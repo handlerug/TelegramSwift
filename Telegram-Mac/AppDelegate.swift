@@ -974,6 +974,13 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
          window.makeKeyAndOrderFront(sender)
     }
     
+    @IBAction func aboutAction(_ sender: Any) {
+        let aboutStoryboard = NSStoryboard.init(name: "TGAboutWindow", bundle: nil)
+        let aboutWindow = aboutStoryboard.instantiateController(withIdentifier: "TGAboutWindowController") as! NSWindowController
+        aboutWindow.showWindow(self)
+        //showModal(with: AboutModalController(), for: window)
+        //window.makeKeyAndOrderFront(sender)
+    }
     @IBAction func preferencesAction(_ sender: Any) {
         
         if let context = contextValue?.context {
