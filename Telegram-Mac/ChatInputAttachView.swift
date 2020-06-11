@@ -21,9 +21,88 @@ class ChatInputAttachView: ImageButton, Notifable {
     private var chatInteraction:ChatInteraction
     private var controller:SPopoverViewController?
     private let editMediaAccessory: ImageView = ImageView()
+    
+    @objc private func attachMenuUpdateEditingMessageMedia(_ sender: AnyObject) {
+        self.chatInteraction.updateEditingMessageMedia(mediaExts, true)
+    }
+    
+    @objc private func attachMenuUpdateEditingMessageFile(_ sender: AnyObject) {
+        self.chatInteraction.updateEditingMessageMedia(nil, false)
+    }
+    
+    @objc private func attachMenuUpdateEditingMessageEditPhoto(_ sender: AnyObject) {
+        if let editState = chatInteraction.presentation.interfaceState.editState, let media = editState.originalMedia, media is TelegramMediaImage {
+            self.chatInteraction.editEditingMessagePhoto(media as! TelegramMediaImage)
+        }
+    }
+    
+    @objc private func attachMenuPhotoOrVideo(_ sender: AnyObject) {
+        if let peer = chatInteraction.presentation.peer {
+            if let permissionText = permissionText(from: peer, for: .banSendMedia) {
+                alert(for: mainWindow, info: permissionText)
+                return
+            }
+            self.chatInteraction.attachPhotoOrVideo()
+        }
+    }
+    
+    @objc private func attachMenuPicture(_ sender: AnyObject) {
+        if let peer = chatInteraction.presentation.peer {
+            if let permissionText = permissionText(from: peer, for: .banSendMedia) {
+                alert(for: mainWindow, info: permissionText)
+                return
+            }
+            self.chatInteraction.attachPicture()
+        }
+    }
+    
+    @objc private func attachMenuPoll(_ sender: AnyObject) {
+        if let peer = chatInteraction.presentation.peer {
+            if let permissionText = permissionText(from: peer, for: .banSendPolls) {
+                alert(for: mainWindow, info: permissionText)
+                return
+            }
+            showModal(with: NewPollController(chatInteraction: self.chatInteraction), for: mainWindow)
+        }
+    }
+    
+    @objc private func attachMenuFile(_ sender: AnyObject) {
+        if let peer = chatInteraction.presentation.peer {
+            if let permissionText = permissionText(from: peer, for: .banSendMedia) {
+                alert(for: mainWindow, info: permissionText)
+                return
+            }
+            self.chatInteraction.attachFile(false)
+        }
+    }
+    
+    @objc private func attachMenuLocation(_ sender: AnyObject) {
+        self.chatInteraction.attachLocation()
+    }
+    
+    let attachMenuUpdateEditingMessageMediaItem = NSMenuItem(title: L10n.inputAttachPopoverPhotoOrVideo, action: #selector(attachMenuUpdateEditingMessageMedia(_:)), keyEquivalent: "")
+    let attachMenuUpdateEditingMessageFileItem = NSMenuItem(title: L10n.inputAttachPopoverFile, action: #selector(attachMenuUpdateEditingMessageFile(_:)), keyEquivalent: "")
+    let attachMenuUpdateEditingMessageEditPhotoItem = NSMenuItem(title: L10n.editMessageEditCurrentPhoto, action: #selector(attachMenuUpdateEditingMessageEditPhoto(_:)), keyEquivalent: "")
+    
+    let attachMenuPhotoOrVideoItem = NSMenuItem(title: L10n.inputAttachPopoverPhotoOrVideo, action: #selector(attachMenuPhotoOrVideo(_:)), keyEquivalent: "")
+    let attachMenuPictureItem = NSMenuItem(title: L10n.inputAttachPopoverPicture, action: #selector(attachMenuPicture(_:)), keyEquivalent: "")
+    let attachMenuPollItem = NSMenuItem(title: L10n.inputAttachPopoverPoll, action: #selector(attachMenuPoll(_:)), keyEquivalent: "")
+    let attachMenuFileItem = NSMenuItem(title: L10n.inputAttachPopoverFile, action: #selector(attachMenuFile(_:)), keyEquivalent: "")
+    let attachMenuLocationItem = NSMenuItem(title: L10n.inputAttachPopoverLocation, action: #selector(attachMenuLocation(_:)), keyEquivalent: "")
+    
     init(frame frameRect: NSRect, chatInteraction:ChatInteraction) {
         self.chatInteraction = chatInteraction
         super.init(frame: frameRect)
+        
+        attachMenuUpdateEditingMessageMediaItem.target = self
+        attachMenuUpdateEditingMessageFileItem.target = self
+        attachMenuUpdateEditingMessageEditPhotoItem.target = self
+
+        attachMenuPhotoOrVideoItem.target = self
+        attachMenuPictureItem.target = self
+        attachMenuPollItem.target = self
+        attachMenuFileItem.target = self
+        attachMenuLocationItem.target = self
         
         
         highlightHovered = true
@@ -37,23 +116,17 @@ class ChatInputAttachView: ImageButton, Notifable {
             guard let `self` = self else {return}
             if let peer = chatInteraction.presentation.peer {
                 
-                var items:[SPopoverItem] = []
+                let menu = NSMenu()
                 if let editState = chatInteraction.presentation.interfaceState.editState, let media = editState.originalMedia, media is TelegramMediaFile || media is TelegramMediaImage {
                     
-                    items.append(SPopoverItem(L10n.inputAttachPopoverPhotoOrVideo, { [weak self] in
-                        self?.chatInteraction.updateEditingMessageMedia(mediaExts, true)
-                    }, theme.icons.chatAttachPhoto))
+                    menu.addItem(self.attachMenuUpdateEditingMessageMediaItem)
                     
                     if editState.message.groupingKey == nil {
-                        items.append(SPopoverItem(L10n.inputAttachPopoverFile, { [weak self] in
-                            self?.chatInteraction.updateEditingMessageMedia(nil, false)
-                        }, theme.icons.chatAttachFile))
+                        menu.addItem(self.attachMenuUpdateEditingMessageFileItem)
                     }
                     
                     if media is TelegramMediaImage {
-                        items.append(SPopoverItem(L10n.editMessageEditCurrentPhoto, { [weak self] in
-                            self?.chatInteraction.editEditingMessagePhoto(media as! TelegramMediaImage)
-                        }, theme.icons.editMessageCurrentPhoto))
+                        menu.addItem(self.attachMenuUpdateEditingMessageEditPhotoItem)
                     }
                     
                     
@@ -64,22 +137,9 @@ class ChatInputAttachView: ImageButton, Notifable {
                         return
                     }
                     
-                    items.append(SPopoverItem(L10n.inputAttachPopoverPhotoOrVideo, { [weak self] in
-                        if let permissionText = permissionText(from: peer, for: .banSendMedia) {
-                            alert(for: mainWindow, info: permissionText)
-                            return
-                        }
-                        self?.chatInteraction.attachPhotoOrVideo()
-                    }, theme.icons.chatAttachPhoto))
+                    menu.addItem(self.attachMenuPhotoOrVideoItem)
                     
-                    items.append(SPopoverItem(L10n.inputAttachPopoverPicture, { [weak self] in
-                        guard let `self` = self else {return}
-                        if let permissionText = permissionText(from: peer, for: .banSendMedia) {
-                            alert(for: mainWindow, info: permissionText)
-                            return
-                        }
-                        self.chatInteraction.attachPicture()
-                    }, theme.icons.chatAttachCamera))
+                    menu.addItem(self.attachMenuPictureItem)
                     
                     var canAttachPoll: Bool = false
                     if let peer = chatInteraction.presentation.peer, peer.isGroup || peer.isSupergroup {
@@ -99,60 +159,21 @@ class ChatInputAttachView: ImageButton, Notifable {
                     }
                    
                     if canAttachPoll {
-                        items.append(SPopoverItem(L10n.inputAttachPopoverPoll, { [weak self] in
-                            guard let `self` = self else {return}
-                            if let permissionText = permissionText(from: peer, for: .banSendPolls) {
-                                alert(for: mainWindow, info: permissionText)
-                                return
-                            }
-                            showModal(with: NewPollController(chatInteraction: self.chatInteraction), for: mainWindow)
-                        }, theme.icons.chatAttachPoll))
+                        menu.addItem(self.attachMenuPollItem)
                     }
                     
-                    items.append(SPopoverItem(L10n.inputAttachPopoverFile, { [weak self] in
-                        if let permissionText = permissionText(from: peer, for: .banSendMedia) {
-                            alert(for: mainWindow, info: permissionText)
-                            return
-                        }
-                        self?.chatInteraction.attachFile(false)
-                    }, theme.icons.chatAttachFile))
+                    menu.addItem(self.attachMenuFileItem)
                     
-                    items.append(SPopoverItem(L10n.inputAttachPopoverLocation, { [weak self] in
-                        self?.chatInteraction.attachLocation()
-                    }, theme.icons.chatAttachLocation))
+                    menu.addItem(self.attachMenuLocationItem)
                 }
                 
                 
-                if !items.isEmpty {
-                    self.controller = SPopoverViewController(items: items, visibility: 10)
-                    showPopover(for: self, with: self.controller!, edge: nil, inset: NSMakePoint(0,0))
+                if !menu.items.isEmpty {
+                    menu.popUp(positioning: menu.item(at: 0), at: NSEvent.mouseLocation, in: nil)
                 }
                
             }
-        }, for: .Hover)
-        
-        set(handler: { [weak self] control in
-            guard let `self` = self else {return}
-            
-            if let editState = chatInteraction.presentation.interfaceState.editState {
-                return
-            }
-            
-            if let peer = self.chatInteraction.presentation.peer {
-                if let permissionText = permissionText(from: peer, for: .banSendMedia) {
-                    alert(for: mainWindow, info: permissionText)
-                    return
-                }
-                self.controller?.popover?.hide()
-                Queue.mainQueue().justDispatch {
-                    if self.chatInteraction.presentation.interfaceState.editState != nil {
-                        self.chatInteraction.updateEditingMessageMedia(nil, true)
-                    } else {
-                        self.chatInteraction.attachFile(true)
-                    }
-                }
-            }
-        }, for: .Click)
+        }, for: .Down)
 
         chatInteraction.add(observer: self)
         addSubview(editMediaAccessory)

@@ -46,8 +46,8 @@ class ChatActivitiesView : View {
     }
     
     func updateBackground(_ background:NSColor) {
-        self.backgroundColor = background
-        self.textView.backgroundColor = background
+        self.backgroundColor = .clear
+        self.textView.backgroundColor = .clear
         needsDisplay = true
     }
     

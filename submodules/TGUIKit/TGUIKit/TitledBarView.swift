@@ -48,10 +48,10 @@ private class TitledContainerView : View {
         }
     }
     
-    override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        super.updateLocalizationAndTheme(theme: theme)
-        backgroundColor = presentation.colors.background
-    }
+//    override func updateLocalizationAndTheme(theme: PresentationTheme) {
+//        super.updateLocalizationAndTheme(theme: theme)
+//        backgroundColor = presentation.colors.background
+//    }
     
     fileprivate override func draw(_ layer: CALayer, in ctx: CGContext) {
         
@@ -75,15 +75,18 @@ private class TitledContainerView : View {
                 tY = (frame.height - t) / 2.0
                 
                 let sY = tY + textLayout.size.height + 2.0
+                NSLog("frame.height: %f, t: %f, tY: %f, sY: %f", frame.height, t, tY, sY)
                 if !hiddenStatus {
                     let point = convert( NSMakePoint(floorToScreenPixels(backingScaleFactor, (superview.frame.width - statusLayout.size.width)/2.0), tY), from: superview)
                     
-                    statusApply.draw(NSMakeRect(textInset == nil ? point.x : textInset!, sY, statusLayout.size.width, statusLayout.size.height), in: ctx, backingScaleFactor: backingScaleFactor, backgroundColor: backgroundColor)
+                    statusApply.draw(NSMakeRect(textInset == nil ? point.x : textInset!, sY, statusLayout.size.width, statusLayout.size.height), in: ctx, backingScaleFactor: backingScaleFactor, backgroundColor: .clear)
                 }
             }
             
-            let point = convert( NSMakePoint(floorToScreenPixels(backingScaleFactor, (superview.frame.width - textLayout.size.width)/2.0), tY), from: superview)
+            let point = NSMakePoint(floorToScreenPixels(backingScaleFactor, (frame.width - textLayout.size.width)/2.0), tY)
             var textRect = NSMakeRect(min(max(textInset == nil ? point.x : textInset!, 0), frame.width - textLayout.size.width), point.y, textLayout.size.width, textLayout.size.height)
+            
+            NSLog("point: %@; textRect: %@", NSStringFromPoint(point), NSStringFromRect(textRect))
             
             if let (titleImage, side) = titleImage {
                 switch side {
@@ -95,7 +98,7 @@ private class TitledContainerView : View {
                 }
             }
             
-            textApply.draw(textRect, in: ctx, backingScaleFactor: backingScaleFactor, backgroundColor: backgroundColor)
+            textApply.draw(textRect, in: ctx, backingScaleFactor: backingScaleFactor, backgroundColor: .clear)
         }
     }
 }
@@ -115,7 +118,7 @@ open class TitledBarView: BarView {
     
     open override var backgroundColor: NSColor {
         didSet {
-            containerView.backgroundColor = backgroundColor
+//            containerView.backgroundColor = backgroundColor
         }
     }
     

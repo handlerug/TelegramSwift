@@ -424,7 +424,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A7918E6A240CF467002011CA /* Source */ = {
+		A7918E6A240CF467002011CA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				A7918EAD240CF487002011CA /* AFHTTPRequestOperation.m */,
@@ -553,10 +553,10 @@
 				A7918E72240CF483002011CA /* PingFoundation.h */,
 				A7918E77240CF483002011CA /* PingFoundation.m */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		A7918F65240CF48F002011CA /* Headers */ = {
+		A7918F65240CF48F002011CA /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
 				A7918F7E240CF4AC002011CA /* AFHTTPRequestOperation.h */,
@@ -618,7 +618,7 @@
 				A7918F73240CF4AB002011CA /* MTTransportScheme.h */,
 				A7918F87240CF4AD002011CA /* MTTransportTransaction.h */,
 			);
-			path = Headers;
+			path = PublicHeaders;
 			sourceTree = "<group>";
 		};
 		D05A830918AFB3F9007F1076 = {
@@ -667,8 +667,8 @@
 		D05A849B18AFCA3D007F1076 /* MtProtoKit */ = {
 			isa = PBXGroup;
 			children = (
-				A7918F65240CF48F002011CA /* Headers */,
-				A7918E6A240CF467002011CA /* Source */,
+				A7918F65240CF48F002011CA /* PublicHeaders */,
+				A7918E6A240CF467002011CA /* Sources */,
 			);
 			name = MtProtoKit;
 			path = "../../submodules/telegram-ios/submodules/MtProtoKit";

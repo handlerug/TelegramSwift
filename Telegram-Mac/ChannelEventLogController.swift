@@ -18,6 +18,10 @@ import SwiftSignalKit
 
 
 class ChannelEventLogTitledView : TitledBarView {
+    override var isFlipped: Bool {
+        true
+    }
+    
     private var titleNode:TextNode = TextNode()
     var attributedText:NSAttributedString
     init(controller: ViewController, _ text:NSAttributedString) {
@@ -28,7 +32,7 @@ class ChannelEventLogTitledView : TitledBarView {
     
     override func draw(_ layer: CALayer, in ctx: CGContext) {
         super.draw(layer, in: ctx)
-        layer.backgroundColor = theme.colors.background.cgColor
+        //layer.backgroundColor = theme.colors.background.cgColor
         
         let (textLayout, textApply) = TextNode.layoutText(maybeNode: titleNode, attributedText, nil, 1, .end, NSMakeSize(bounds.width - 40, bounds.height), nil,false, .left)
         let textRect = focus(textLayout.size)
@@ -44,7 +48,7 @@ class ChannelEventLogTitledView : TitledBarView {
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        backgroundColor = theme.colors.background
+        //backgroundColor = theme.colors.background
         needsDisplay = true
     }
     

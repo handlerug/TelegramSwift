@@ -2244,7 +2244,7 @@ private func telegramUpdateTheme(_ theme: TelegramPresentationTheme, window: Win
 //        NSAppearance.current = theme.appearance
        // window.titl
         window.backgroundColor = theme.colors.grayBackground
-        window.titlebarAppearsTransparent = true//theme.dark
+//        window.titlebarAppearsTransparent = true//theme.dark
         
     }
     _themeSignal.set(theme)

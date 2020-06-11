@@ -117,7 +117,9 @@ private class ConnectionStatusView : View {
 
 class ChatTitleBarView: TitledBarView, InteractionContentViewProtocol {
    
-    
+    override var isFlipped: Bool {
+        true
+    }
     
     private var isSingleLayout:Bool = false
     private var connectionStatusView:ConnectionStatusView? = nil

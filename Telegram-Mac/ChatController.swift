@@ -3514,12 +3514,14 @@ class ChatController: EditableViewController<ChatControllerView>, Notifable, Tab
         let back = BarView(70, controller: self) //MajorBackNavigationBar(self, account: account, excludePeerId: peerId)
         
         let editButton = ImageButton()
+        editButton.backgroundColor = .clear
        // editButton.disableActions()
         back.addSubview(editButton)
         
         self.editButton = editButton
 //        
         let doneButton = TitleButton()
+        doneButton.backgroundColor = .clear
       //  doneButton.disableActions()
         doneButton.set(font: .medium(.text), for: .Normal)
         doneButton.set(text: tr(L10n.navigationDone), for: .Normal)
@@ -4698,6 +4700,8 @@ class ChatController: EditableViewController<ChatControllerView>, Notifable, Tab
     }
     
     override func initializer() -> ChatControllerView {
+        // dirty note:
+        // look at this file too
         return ChatControllerView(frame: NSMakeRect(_frameRect.minX, _frameRect.minY, _frameRect.width, _frameRect.height - self.bar.height), chatInteraction:chatInteraction);
     }
     

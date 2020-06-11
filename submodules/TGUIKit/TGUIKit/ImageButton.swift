@@ -15,6 +15,15 @@ open class ImageButton: Button {
     private var images:[ControlState:CGImage] = [:]
     private var backgroundImage:[ControlState:CGImage] = [:]
     
+    open override var backgroundColor: NSColor {
+        get {
+            .clear
+        }
+        set {
+            super.backgroundColor = .clear
+        }
+    }
+    
     
     public func removeImage(for state:ControlState) {
         images.removeValue(forKey: state)

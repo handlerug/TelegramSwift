@@ -16,9 +16,21 @@ open class BarView: Control {
     public var minWidth:CGFloat = 20
     public private(set) weak var controller: ViewController?
     
+    override open var isFlipped: Bool {
+        return false
+    }
     
     override open func draw(_ layer: CALayer, in ctx: CGContext) {
         super.draw(layer, in: ctx)
+    }
+    
+    open override var backgroundColor: NSColor {
+        get {
+            .clear
+        }
+        set {
+            super.backgroundColor = .clear
+        }
     }
     
     
@@ -39,6 +51,7 @@ open class BarView: Control {
         self.minWidth = width
         self.controller = controller
         super.init(frame: NSMakeRect(0, 0, minWidth, 50))
+        backgroundColor = .clear
         animates = false
         overlayInitEvent()
     }
@@ -53,8 +66,8 @@ open class BarView: Control {
     
     override open func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
-        set(background: presentation.colors.background, for: .Normal)
-        backgroundColor = presentation.colors.background
+//        set(background: presentation.colors.background, for: .Normal)
+//        backgroundColor = presentation.colors.background
     }
     
 

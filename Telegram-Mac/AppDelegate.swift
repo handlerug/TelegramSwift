@@ -854,9 +854,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     
     
     func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
-        var rect = rect
-        rect.origin.y -= 22
-        return rect;
+        rect
     }
     
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -917,18 +915,19 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     }
     
     func applicationWillUnhide(_ notification: Notification) {
-        window.makeKeyAndOrderFront(nil)
+        // window.makeKeyAndOrderFront(nil)
     }
     
     func applicationWillBecomeActive(_ notification: Notification) {
         if contextValue != nil {
             if viewer != nil {
                 viewer?.windowDidResignKey()
-            } else if let passport = passport {
-                passport.window.makeKeyAndOrderFront(nil)
-            } else {
-                window.makeKeyAndOrderFront(nil)
             }
+//            else if let passport = passport {
+//                passport.window.makeKeyAndOrderFront(nil)
+//            } else {
+//                window.makeKeyAndOrderFront(nil)
+//            }
             
             
         }
@@ -975,10 +974,6 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
          window.makeKeyAndOrderFront(sender)
     }
     
-    @IBAction func aboutAction(_ sender: Any) {
-        showModal(with: AboutModalController(), for: window)
-        window.makeKeyAndOrderFront(sender)
-    }
     @IBAction func preferencesAction(_ sender: Any) {
         
         if let context = contextValue?.context {

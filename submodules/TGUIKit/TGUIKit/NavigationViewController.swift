@@ -516,7 +516,7 @@ open class NavigationViewController: ViewController, CALayerDelegate,CAAnimation
     public override var backgroundColor: NSColor {
         set {
             self.view.background = newValue
-            navigationBar.backgroundColor = newValue
+            //navigationBar.backgroundColor = newValue
         }
         get {
             return self.view.background
@@ -646,6 +646,7 @@ open class NavigationViewController: ViewController, CALayerDelegate,CAAnimation
         
         let popInteractiveInset: CGFloat? = window.inLiveSwiping ? controller.frame.minX : nil
         
+//        contentInset = 0
         controller.view.frame = NSMakeRect(0, contentInset , NSWidth(containerView.frame), NSHeight(containerView.frame) - contentInset)
         if #available(OSX 10.12, *) {
             
