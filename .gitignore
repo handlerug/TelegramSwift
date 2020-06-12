@@ -3,3 +3,4 @@ fastlane/report.xml
 xcuserdata
 xcuserstate
 .DS_Store
+/Telegram-Mac/Config.swift
