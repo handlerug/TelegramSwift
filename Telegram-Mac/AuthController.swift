@@ -698,7 +698,7 @@ class AuthController : GenericViewController<AuthHeaderView> {
         self.sharedContext = sharedContext
         self.otherAccountPhoneNumbers = otherAccountPhoneNumbers
         #if !APP_STORE
-        updateController = UpdateTabController(sharedContext)
+        updateController = UpdateTabController(sharedContext, mainWindow)
         #endif
         super.init()
         
@@ -773,9 +773,9 @@ class AuthController : GenericViewController<AuthHeaderView> {
         super.viewDidLoad()
         
         #if !APP_STORE
-            addSubview(updateController.view)
-        
-            updateController.frame = NSMakeRect(0, frame.height - 60, frame.width, 60)
+//            addSubview(updateController.view)
+//
+//            updateController.frame = NSMakeRect(0, frame.height - 60, frame.width, 60)
         #endif
         
         var arguments: LoginAuthViewArguments?
@@ -1114,7 +1114,7 @@ class AuthController : GenericViewController<AuthHeaderView> {
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
         super.updateLocalizationAndTheme(theme: theme)
         #if !APP_STORE
-        updateController.updateLocalizationAndTheme(theme: theme)
+//        updateController.updateLocalizationAndTheme(theme: theme)
         #endif
     }
     

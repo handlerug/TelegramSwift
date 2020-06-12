@@ -439,6 +439,12 @@ private class ExternalUpdateDriver : SUBasicUpdateDriver {
 
     }
     
+    override func didFindValidUpdate() {
+        updateState {
+            return $0.withUpdatedLoadingState(.hasUpdate(self.updateItem))
+        }
+    }
+    
     override func downloadUpdate() {
         updateState {
             return $0.withUpdatedLoadingState(.loading(item: self.updateItem, current: 0, total: Int(self.updateItem.contentLength)))

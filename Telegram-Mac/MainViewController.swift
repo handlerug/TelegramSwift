@@ -101,86 +101,109 @@ final class UpdateTabView : Control {
     }
 }
 
-final class UpdateTabController: GenericViewController<UpdateTabView> {
+final class UpdateTabController: ViewController {
     private let disposable = MetaDisposable()
     private let shakeDisposable = MetaDisposable()
+    
     private let context: SharedAccountContext
+    private let _window: Window
+    override var window: Window {
+        return _window
+    }
+    
+    private var _view: NSButton?
+    private var viewInitialized: Bool = false
+    
+    var isInstalling: Bool = false {
+        didSet {
+            _view?.isHidden = isInstalling || appcastItem == nil
+        }
+    }
+    
     private var state: UpdateButtonState = .common {
         didSet {
-            switch state {
-            case .common:
-                genericView.backgroundColor = theme.colors.accent
-            case .important:
-                genericView.backgroundColor = theme.colors.greenUI
-            case .critical:
-                genericView.backgroundColor = theme.colors.redUI
-            }
+//            switch state {
+//            case .common:
+//                genericView.backgroundColor = theme.colors.accent
+//            case .important:
+//                genericView.backgroundColor = theme.colors.greenUI
+//            case .critical:
+//                genericView.backgroundColor = theme.colors.redUI
+//            }
         }
     }
     private let stateDisposable = MetaDisposable()
     private var appcastItem: SUAppcastItem? {
         didSet {
             
-            genericView.isHidden = appcastItem == nil
+            _view?.isHidden = isInstalling || appcastItem == nil
             
             
-            var state = self.state
+//            var state = self.state
             
-            if appcastItem != oldValue {
-                if let appcastItem = appcastItem {
-                    state = appcastItem.isCritical ? .critical : .common
-                    
-                    if state != .critical {
-                        
-                        let importantDelay: Double = 60 * 60 * 24
-                        let criticalDelay: Double = 60 * 60 * 24
-                        let updateSignal = Signal<UpdateButtonState, NoError>.single(.important) |> delay(importantDelay, queue: .mainQueue()) |> then(.single(.critical) |> delay(criticalDelay, queue: .mainQueue()))
-                        
-                        stateDisposable.set(updateSignal.start(next: { [weak self] newState in
-                            self?.state = newState
-                        }))
-                        
-                    }
-                    
-                } else {
-                    stateDisposable.set(nil)
-                }
-            }
-            self.state = state
+//            if appcastItem != oldValue {
+//                if let appcastItem = appcastItem {
+//                    state = appcastItem.isCritical ? .critical : .common
+//
+//                    if state != .critical {
+//
+//                        let importantDelay: Double = 60 * 60 * 24
+//                        let criticalDelay: Double = 60 * 60 * 24
+//                        let updateSignal = Signal<UpdateButtonState, NoError>.single(.important) |> delay(importantDelay, queue: .mainQueue()) |> then(.single(.critical) |> delay(criticalDelay, queue: .mainQueue()))
+//
+//                        stateDisposable.set(updateSignal.start(next: { [weak self] newState in
+//                            self?.state = newState
+//                        }))
+//
+//                    }
+//
+//                } else {
+//                    stateDisposable.set(nil)
+//                }
+//            }
+//            self.state = state
         }
     }
     
-    init(_ context: SharedAccountContext) {
+    init(_ context: SharedAccountContext, _ window: Window) {
         self.context = context
+        self._window = window
         super.init()
         self.bar = NavigationBarStyle(height: 0)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let context = self.context
+        
+//        let context = self.context
         
         
-        genericView.set(background: theme.colors.grayForeground, for: .Normal)
-        genericView.isHidden = true
-        genericView.hideAnimated = true
+//        genericView.set(background: theme.colors.grayForeground, for: .Normal)
+        initView()
+        _view?.isHidden = true
+//        genericView.hideAnimated = true
         
         disposable.set((appUpdateStateSignal |> deliverOnMainQueue).start(next: { [weak self] state in
             switch state.loadingState {
-            case let .readyToInstall(item):
+            case let .hasUpdate(item):
                 self?.appcastItem = item
-                self?.genericView.isInstalling = false
+                self?.isInstalling = false
+            case .loading, .readyToInstall:
+                self?.appcastItem = nil
             case .installing:
-                self?.genericView.isInstalling = true
+                self?.isInstalling = true
             default:
                 self?.appcastItem = nil
-                self?.genericView.isInstalling = false
+                self?.isInstalling = false
             }
         }))
         
-        genericView.set(handler: { _ in
-            updateApplication(sharedContext: context)
-        }, for: .Click)
+//        genericView.set(handler: { _ in
+//            updateApplication(sharedContext: context)
+//        }, for: .Click)
+    }
+    
+    @objc func didClick(sender: Any) {
+//        updateApplication(sharedContext: context)
+#if !APP_STORE
+        showModal(with: InputDataModalController(AppUpdateViewController()), for: window)
+#endif
     }
     
     override func updateLocalizationAndTheme(theme: PresentationTheme) {
@@ -190,26 +213,61 @@ final class UpdateTabController: GenericViewController<UpdateTabView> {
     }
     
     func updateLayout(_ layout: SplitViewState, parentSize: NSSize, isChatList: Bool) {
-        genericView.layoutState = layout
-        
-        if isChatList && layout != .minimisize {
-            genericView.setFrameSize(NSMakeSize(genericView.textView.frame.width + 40, 40))
-            genericView.layer?.cornerRadius = genericView.frame.height / 2
-            genericView.centerX(y: layout == .minimisize ? 10 : 60)
-            
-            var shakeDelay: Double = 60 * 60
-           
-            
-            let signal = Signal<Void, NoError>.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> then(.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> restart)
-            self.shakeDisposable.set(signal.start(next: { [weak self] in
-                self?.genericView.shake(beep: false)
-            }))
-        } else {
-            genericView.setFrameSize(NSMakeSize(parentSize.width, 50))
-            genericView.setFrameOrigin(NSMakePoint(0, layout == .minimisize ? 0 : 50))
-            genericView.layer?.cornerRadius = 0
-            shakeDisposable.set(nil)
+//        genericView.layoutState = layout
+//
+//        if isChatList && layout != .minimisize {
+//            genericView.setFrameSize(NSMakeSize(genericView.textView.frame.width + 40, 40))
+//            genericView.layer?.cornerRadius = genericView.frame.height / 2
+//            genericView.centerX(y: layout == .minimisize ? 10 : 60)
+//
+//            var shakeDelay: Double = 60 * 60
+//
+//
+//            let signal = Signal<Void, NoError>.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> then(.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> restart)
+//            self.shakeDisposable.set(signal.start(next: { [weak self] in
+//                self?.genericView.shake(beep: false)
+//            }))
+//        } else {
+//            genericView.setFrameSize(NSMakeSize(parentSize.width, 50))
+//            genericView.setFrameOrigin(NSMakePoint(0, layout == .minimisize ? 0 : 50))
+//            genericView.layer?.cornerRadius = 0
+//            shakeDisposable.set(nil)
+//        }
+    }
+    
+    private func initView() {
+        if viewInitialized {
+            return
         }
+        
+        let view = NSView()
+
+        let button = NSButton()
+        button.showsBorderOnlyWhileMouseInside = true
+        button.controlSize = .small
+        button.font = NSFont.messageFont(ofSize: NSFont.systemFontSize(for: .small))
+        button.bezelStyle = .recessed
+        button.setButtonType(.momentaryPushIn)
+        button.title = "Update Available"
+        button.isHidden = true
+        button.action = #selector(self.didClick)
+        button.target = self
+
+        button.sizeToFit()
+        
+        view.setFrameSize(NSMakeSize(button.frame.size.width + 4, button.frame.size.height + 2))
+        button.setFrameOrigin(0, 2)
+
+        view.addSubview(button)
+        
+        _view = button
+        
+        let accessoryViewController = NSTitlebarAccessoryViewController()
+        accessoryViewController.layoutAttribute = .right
+        accessoryViewController.view = view
+        window.addTitlebarAccessoryViewController(accessoryViewController)
+        
+        viewInitialized = true
     }
     
     deinit {
@@ -647,9 +705,9 @@ class MainViewController: TelegramViewController {
         contacts = ContactsController(context)
         settings = AccountViewController(context)
         phoneCalls = RecentCallsViewController(context)
-        #if !APP_STORE
-            updateController = UpdateTabController(context.sharedContext)
-        #endif
+#if !APP_STORE
+        updateController = UpdateTabController(context.sharedContext, context.window)
+#endif
         super.init(context)
         bar = NavigationBarStyle(height: 0)
        // chatListNavigation.alwaysAnimate = true
