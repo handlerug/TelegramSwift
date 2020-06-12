@@ -94,86 +94,9 @@ class ChatInputAttachView: ImageButton, Notifable {
         self.chatInteraction = chatInteraction
         super.init(frame: frameRect)
         
-        attachMenuUpdateEditingMessageMediaItem.target = self
-        attachMenuUpdateEditingMessageFileItem.target = self
-        attachMenuUpdateEditingMessageEditPhotoItem.target = self
-
-        attachMenuPhotoOrVideoItem.target = self
-        attachMenuPictureItem.target = self
-        attachMenuPollItem.target = self
-        attachMenuFileItem.target = self
-        attachMenuLocationItem.target = self
-        
-        
         highlightHovered = true
         
-        
         updateLayout()
-        
-        
-        set(handler: { [weak self] control in
-            
-            guard let `self` = self else {return}
-            if let peer = chatInteraction.presentation.peer {
-                
-                let menu = NSMenu()
-                if let editState = chatInteraction.presentation.interfaceState.editState, let media = editState.originalMedia, media is TelegramMediaFile || media is TelegramMediaImage {
-                    
-                    menu.addItem(self.attachMenuUpdateEditingMessageMediaItem)
-                    
-                    if editState.message.groupingKey == nil {
-                        menu.addItem(self.attachMenuUpdateEditingMessageFileItem)
-                    }
-                    
-                    if media is TelegramMediaImage {
-                        menu.addItem(self.attachMenuUpdateEditingMessageEditPhotoItem)
-                    }
-                    
-                    
-                } else if chatInteraction.presentation.interfaceState.editState == nil {
-                    
-                    if let slowMode = self.chatInteraction.presentation.slowMode, slowMode.hasLocked {
-                        showSlowModeTimeoutTooltip(slowMode, for: control)
-                        return
-                    }
-                    
-                    menu.addItem(self.attachMenuPhotoOrVideoItem)
-                    
-                    menu.addItem(self.attachMenuPictureItem)
-                    
-                    var canAttachPoll: Bool = false
-                    if let peer = chatInteraction.presentation.peer, peer.isGroup || peer.isSupergroup {
-                        canAttachPoll = true
-                    }
-                    if let peer = chatInteraction.presentation.mainPeer, peer.isBot {
-                        canAttachPoll = true
-                    }
-                    
-                    if let peer = chatInteraction.presentation.peer as? TelegramChannel {
-                        if peer.hasPermission(.sendMessages) {
-                            canAttachPoll = true
-                        }
-                    }
-                    if canAttachPoll && permissionText(from: peer, for: .banSendPolls) != nil {
-                        canAttachPoll = false
-                    }
-                   
-                    if canAttachPoll {
-                        menu.addItem(self.attachMenuPollItem)
-                    }
-                    
-                    menu.addItem(self.attachMenuFileItem)
-                    
-                    menu.addItem(self.attachMenuLocationItem)
-                }
-                
-                
-                if !menu.items.isEmpty {
-                    menu.popUp(positioning: menu.item(at: 0), at: NSEvent.mouseLocation, in: nil)
-                }
-               
-            }
-        }, for: .Down)
 
         chatInteraction.add(observer: self)
         addSubview(editMediaAccessory)
@@ -212,6 +135,66 @@ class ChatInputAttachView: ImageButton, Notifable {
 //                self.autohighlight = false
 //            }
 //        }
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        if let peer = chatInteraction.presentation.peer {
+            
+            let menu = NSMenu()
+
+            if let editState = chatInteraction.presentation.interfaceState.editState, let media = editState.originalMedia, media is TelegramMediaFile || media is TelegramMediaImage {
+                
+                menu.addItem(self.attachMenuUpdateEditingMessageMediaItem)
+                
+                if editState.message.groupingKey == nil {
+                    menu.addItem(self.attachMenuUpdateEditingMessageFileItem)
+                }
+                
+                if media is TelegramMediaImage {
+                    menu.addItem(self.attachMenuUpdateEditingMessageEditPhotoItem)
+                }
+                
+                
+            } else if chatInteraction.presentation.interfaceState.editState == nil {
+                
+                if let slowMode = self.chatInteraction.presentation.slowMode, slowMode.hasLocked {
+                    showSlowModeTimeoutTooltip(slowMode, for: self)
+                    return
+                }
+                
+                menu.addItem(self.attachMenuPhotoOrVideoItem)
+                
+                menu.addItem(self.attachMenuPictureItem)
+                
+                var canAttachPoll = false
+                if let peer = chatInteraction.presentation.peer, peer.isGroup || peer.isSupergroup {
+                    canAttachPoll = true
+                }
+                if let peer = chatInteraction.presentation.mainPeer, peer.isBot {
+                    canAttachPoll = true
+                }
+                
+                if let peer = chatInteraction.presentation.peer as? TelegramChannel {
+                    canAttachPoll = peer.hasPermission(.sendMessages)
+                }
+                if canAttachPoll && permissionText(from: peer, for: .banSendPolls) != nil {
+                    canAttachPoll = false
+                }
+               
+                if canAttachPoll {
+                    menu.addItem(self.attachMenuPollItem)
+                }
+                
+                menu.addItem(self.attachMenuFileItem)
+                
+                menu.addItem(self.attachMenuLocationItem)
+            }
+            
+            
+            if !menu.items.isEmpty {
+                NSMenu.popUpContextMenu(menu, with: event, for: self)
+            }
+        }
     }
     
     override func layout() {
