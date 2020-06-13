@@ -10,7 +10,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 
-DSA_PEM_FILE = dsa_pub.pem
+ED_KEY = vYZyxW7k5cRGzvQLZHTYw5mYIc3ToyJ3quL8XBvxm04=
 
 SIMPLE_SLASH=/
 
