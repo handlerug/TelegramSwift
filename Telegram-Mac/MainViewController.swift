@@ -103,7 +103,6 @@ final class UpdateTabView : Control {
 
 final class UpdateTabController: ViewController {
     private let disposable = MetaDisposable()
-    private let shakeDisposable = MetaDisposable()
     
     private let context: SharedAccountContext
     private let _window: Window
@@ -112,56 +111,23 @@ final class UpdateTabController: ViewController {
     }
     
     private var _view: NSButton?
-    private var viewInitialized: Bool = false
+    private var viewInitialized = false
+    private var controllerIndex = -1
     
     var isInstalling: Bool = false {
         didSet {
             _view?.isHidden = isInstalling || appcastItem == nil
         }
     }
-    
-    private var state: UpdateButtonState = .common {
+    var isReadyToInstall: Bool = false {
         didSet {
-//            switch state {
-//            case .common:
-//                genericView.backgroundColor = theme.colors.accent
-//            case .important:
-//                genericView.backgroundColor = theme.colors.greenUI
-//            case .critical:
-//                genericView.backgroundColor = theme.colors.redUI
-//            }
+            _view?.title = isReadyToInstall ? "Ready to Update" : "Update Available"
         }
     }
-    private let stateDisposable = MetaDisposable()
+    
     private var appcastItem: SUAppcastItem? {
         didSet {
-            
             _view?.isHidden = isInstalling || appcastItem == nil
-            
-            
-//            var state = self.state
-            
-//            if appcastItem != oldValue {
-//                if let appcastItem = appcastItem {
-//                    state = appcastItem.isCritical ? .critical : .common
-//
-//                    if state != .critical {
-//
-//                        let importantDelay: Double = 60 * 60 * 24
-//                        let criticalDelay: Double = 60 * 60 * 24
-//                        let updateSignal = Signal<UpdateButtonState, NoError>.single(.important) |> delay(importantDelay, queue: .mainQueue()) |> then(.single(.critical) |> delay(criticalDelay, queue: .mainQueue()))
-//
-//                        stateDisposable.set(updateSignal.start(next: { [weak self] newState in
-//                            self?.state = newState
-//                        }))
-//
-//                    }
-//
-//                } else {
-//                    stateDisposable.set(nil)
-//                }
-//            }
-//            self.state = state
         }
     }
     
@@ -171,21 +137,19 @@ final class UpdateTabController: ViewController {
         super.init()
         self.bar = NavigationBarStyle(height: 0)
         
-//        let context = self.context
-        
-        
-//        genericView.set(background: theme.colors.grayForeground, for: .Normal)
         initView()
-        _view?.isHidden = true
-//        genericView.hideAnimated = true
         
         disposable.set((appUpdateStateSignal |> deliverOnMainQueue).start(next: { [weak self] state in
             switch state.loadingState {
             case let .hasUpdate(item):
                 self?.appcastItem = item
                 self?.isInstalling = false
-            case .loading, .readyToInstall:
+                self?.isReadyToInstall = false
+            case .loading:
                 self?.appcastItem = nil
+            case let .readyToInstall(item):
+                self?.appcastItem = item
+                self?.isReadyToInstall = true
             case .installing:
                 self?.isInstalling = true
             default:
@@ -193,46 +157,15 @@ final class UpdateTabController: ViewController {
                 self?.isInstalling = false
             }
         }))
-        
-//        genericView.set(handler: { _ in
-//            updateApplication(sharedContext: context)
-//        }, for: .Click)
     }
     
     @objc func didClick(sender: Any) {
-//        updateApplication(sharedContext: context)
 #if !APP_STORE
         showModal(with: InputDataModalController(AppUpdateViewController()), for: window)
 #endif
     }
     
-    override func updateLocalizationAndTheme(theme: PresentationTheme) {
-        super.updateLocalizationAndTheme(theme: theme)
-        let item = self.appcastItem
-        self.appcastItem = item
-    }
-    
     func updateLayout(_ layout: SplitViewState, parentSize: NSSize, isChatList: Bool) {
-//        genericView.layoutState = layout
-//
-//        if isChatList && layout != .minimisize {
-//            genericView.setFrameSize(NSMakeSize(genericView.textView.frame.width + 40, 40))
-//            genericView.layer?.cornerRadius = genericView.frame.height / 2
-//            genericView.centerX(y: layout == .minimisize ? 10 : 60)
-//
-//            var shakeDelay: Double = 60 * 60
-//
-//
-//            let signal = Signal<Void, NoError>.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> then(.single(Void()) |> delay(shakeDelay, queue: .mainQueue()) |> restart)
-//            self.shakeDisposable.set(signal.start(next: { [weak self] in
-//                self?.genericView.shake(beep: false)
-//            }))
-//        } else {
-//            genericView.setFrameSize(NSMakeSize(parentSize.width, 50))
-//            genericView.setFrameOrigin(NSMakePoint(0, layout == .minimisize ? 0 : 50))
-//            genericView.layer?.cornerRadius = 0
-//            shakeDisposable.set(nil)
-//        }
     }
     
     private func initView() {
@@ -266,14 +199,16 @@ final class UpdateTabController: ViewController {
         accessoryViewController.layoutAttribute = .right
         accessoryViewController.view = view
         window.addTitlebarAccessoryViewController(accessoryViewController)
+        controllerIndex = window.titlebarAccessoryViewControllers.endIndex - 1
         
         viewInitialized = true
     }
     
     deinit {
         disposable.dispose()
-        stateDisposable.dispose()
-        shakeDisposable.dispose()
+        if viewInitialized {
+            window.removeTitlebarAccessoryViewController(at: controllerIndex)
+        }
     }
 }
 
