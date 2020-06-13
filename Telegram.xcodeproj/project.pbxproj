@@ -309,7 +309,6 @@
 		C20CB7291E60886F00C992AC /* LinkInvationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20CB7281E60886E00C992AC /* LinkInvationController.swift */; };
 		C20D5AB11DA996480042616A /* EBlockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D5AB01DA996480042616A /* EBlockItem.swift */; };
 		C20D5AB31DA9965B0042616A /* EBlockRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D5AB21DA9965B0042616A /* EBlockRowView.swift */; };
-		C21074241E77F5DF006EE5EF /* dsa_pub_prod.pem in Resources */ = {isa = PBXBuildFile; fileRef = C21074231E77F5DF006EE5EF /* dsa_pub_prod.pem */; };
 		C210742C1E780CC1006EE5EF /* PhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C210742B1E780CC1006EE5EF /* PhotoCache.swift */; };
 		C210959A1E9FE04700E10BDB /* ChatVideoMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21095991E9FE04700E10BDB /* ChatVideoMessageContentView.swift */; };
 		C2167E4F1DC220D800F98E03 /* PeerMediaWebpageRowContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2167E4E1DC220D800F98E03 /* PeerMediaWebpageRowContent.swift */; };
@@ -422,7 +421,6 @@
 		C232EA0E1E155E9400C4D38C /* PeersListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C232EA0D1E155E9400C4D38C /* PeersListController.swift */; };
 		C232EA101E156DE100C4D38C /* ContextCommandRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C232EA0F1E156DE100C4D38C /* ContextCommandRowItem.swift */; };
 		C232EA131E16552900C4D38C /* WebGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C232EA121E16552900C4D38C /* WebGameViewController.swift */; };
-		C232EA3D1E1C06EF00C4D38C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C232EA3C1E1C06EF00C4D38C /* dsa_pub.pem */; };
 		C232EA951E1D07E700C4D38C /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = C232EA941E1D07E700C4D38C /* icon.icns */; };
 		C232EA981E1D07E700C4D38C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C232EA971E1D07E700C4D38C /* ShareViewController.swift */; };
 		C232EA9B1E1D07E700C4D38C /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C232EA991E1D07E700C4D38C /* ShareViewController.xib */; };
@@ -1365,7 +1363,6 @@
 		C20CB7281E60886E00C992AC /* LinkInvationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkInvationController.swift; sourceTree = "<group>"; };
 		C20D5AB01DA996480042616A /* EBlockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBlockItem.swift; sourceTree = "<group>"; };
 		C20D5AB21DA9965B0042616A /* EBlockRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBlockRowView.swift; sourceTree = "<group>"; };
-		C21074231E77F5DF006EE5EF /* dsa_pub_prod.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub_prod.pem; sourceTree = "<group>"; };
 		C21074251E77F79A006EE5EF /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		C21074261E77F7A3006EE5EF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		C210742B1E780CC1006EE5EF /* PhotoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCache.swift; sourceTree = "<group>"; };
@@ -1497,7 +1494,6 @@
 		C232EA0D1E155E9400C4D38C /* PeersListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersListController.swift; sourceTree = "<group>"; };
 		C232EA0F1E156DE100C4D38C /* ContextCommandRowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextCommandRowItem.swift; sourceTree = "<group>"; };
 		C232EA121E16552900C4D38C /* WebGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebGameViewController.swift; sourceTree = "<group>"; };
-		C232EA3C1E1C06EF00C4D38C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		C232EA911E1D07E700C4D38C /* TelegramShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TelegramShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C232EA941E1D07E700C4D38C /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		C232EA961E1D07E700C4D38C /* TelegramShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelegramShare.entitlements; sourceTree = "<group>"; };
@@ -3521,8 +3517,6 @@
 				C2CFCAB81EBB4A1600843F6A /* voip */,
 				C23BC3671E9AA03E00D79F92 /* emoji11.txt */,
 				D0FFCEBD215A7CB700995AFE /* emoji14.txt */,
-				C21074231E77F5DF006EE5EF /* dsa_pub_prod.pem */,
-				C232EA3C1E1C06EF00C4D38C /* dsa_pub.pem */,
 				C252532C1DF0440300ADBC98 /* begin_record.caf */,
 				C2844ADF1DA90C8A009308DC /* emoji.txt */,
 				C27AAFE51DE9D2EE009B9629 /* PhoneCountries.txt */,
@@ -4934,7 +4928,6 @@
 				C253A9701D92F9F100CDC850 /* Localizable.strings in Resources */,
 				D07450E7233D61B800769D7F /* gift.tgs in Resources */,
 				9F03681B22771A9700456348 /* anim_pin.json in Resources */,
-				C232EA3D1E1C06EF00C4D38C /* dsa_pub.pem in Resources */,
 				D098C71B1D7E175A007784E4 /* Assets.xcassets in Resources */,
 				C2CFCABE1EBB4A4D00843F6A /* voip_connecting.mp3 in Resources */,
 				9F03681222771A9700456348 /* anim_read.json in Resources */,
@@ -4961,7 +4954,6 @@
 				9F03681022771A9700456348 /* anim_ungroup.json in Resources */,
 				A778DC3323C8988300DD307B /* quiz-incorrect.mp3 in Resources */,
 				D07450EC233D61B800769D7F /* swap_money.tgs in Resources */,
-				C21074241E77F5DF006EE5EF /* dsa_pub_prod.pem in Resources */,
 				9F03681922771A9700456348 /* anim_archive.json in Resources */,
 				C23D0D7C1F1A649900AF5151 /* SFCompactRounded-Semibold.otf in Resources */,
 			);
