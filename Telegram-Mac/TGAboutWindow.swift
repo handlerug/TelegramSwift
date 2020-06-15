@@ -10,6 +10,6 @@ import Cocoa
 
 class TGAboutWindow: NSWindow {
     override func cancelOperation(_ sender: Any?) {
-        self.orderOut(sender)
+        self.close()
     }
 }

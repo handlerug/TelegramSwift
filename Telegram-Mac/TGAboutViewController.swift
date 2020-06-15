@@ -10,23 +10,32 @@ import Cocoa
 
 class TGAboutViewController: NSViewController {
 
-    @IBOutlet weak var appIconImageView: NSImageView!
     @IBOutlet weak var versionLabel: NSTextField!
+    @IBOutlet weak var copyVersionButton: NSButton!
+    @IBOutlet weak var copyrightNoticeLabel: NSTextField!
+    
     let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "1"
     let buildString = Bundle.main.infoDictionary?["CFBundleVersion"] ?? "0"
     #if STABLE
-    let releaseChannel = "Stable"
+    let releaseChannel = "Stable channel"
     #elseif APP_STORE
     let releaseChannel = "Mac App Store"
+    #elseif BETA
+    let releaseChannel = "Beta channel"
     #else
-    let releaseChannel = "Beta"
+    let releaseChannel = "Alpha channel"
     #endif
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         versionLabel.stringValue = "Version \(versionString) (\(buildString))\n\(releaseChannel)"
-        appIconImageView.image = NSImage(named: "AppIcon")
+        
+        // no matching string for copy to clipboard except the image menu item label
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        copyrightNoticeLabel.stringValue = "Copyright © 2016–\(formatter.string(from: Date(timeIntervalSinceReferenceDate: Date.timeIntervalSinceReferenceDate)))\nTELEGRAM MESSENGER LLP.\nAll rights reserved."
     }
     
     @IBAction func copyButtonClicked(_ sender: Any) {
