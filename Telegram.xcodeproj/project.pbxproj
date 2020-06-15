@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F8A11792497701800A4F127 /* TGAboutWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */; };
+		7F8A117A2497701800A4F127 /* TGAboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11772497701700A4F127 /* TGAboutWindow.swift */; };
+		7F8A117B2497701800A4F127 /* TGAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11782497701700A4F127 /* TGAboutViewController.swift */; };
 		9F0367F0227208E000456348 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367EF227208E000456348 /* QRCode.swift */; };
 		9F0367F22272108800456348 /* ProxyQRCodeRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */; };
 		9F0367F72273260A00456348 /* UndoTooltipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367F62273260A00456348 /* UndoTooltipController.swift */; };
@@ -950,6 +953,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TGAboutWindow.storyboard; sourceTree = "<group>"; };
+		7F8A11772497701700A4F127 /* TGAboutWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutWindow.swift; sourceTree = "<group>"; };
+		7F8A11782497701700A4F127 /* TGAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutViewController.swift; sourceTree = "<group>"; };
 		9F0367EF227208E000456348 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyQRCodeRowItem.swift; sourceTree = "<group>"; };
 		9F0367F62273260A00456348 /* UndoTooltipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoTooltipController.swift; sourceTree = "<group>"; };
@@ -2081,6 +2087,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F8A117524976FE800A4F127 /* about-window */ = {
+			isa = PBXGroup;
+			children = (
+				7F8A11782497701700A4F127 /* TGAboutViewController.swift */,
+				7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */,
+				7F8A11772497701700A4F127 /* TGAboutWindow.swift */,
+			);
+			name = "about-window";
+			sourceTree = "<group>";
+		};
 		9F0367E622707B6400456348 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
@@ -3003,6 +3019,7 @@
 		C22E062F1D80439800A11C88 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				7F8A117524976FE800A4F127 /* about-window */,
 				9F354E9A227062F3006F1D42 /* haptic */,
 				9F3D5F6122044D3500CB0CAA /* updater */,
 				9F0AE6BA2199BBA400A8B53A /* media-player */,
@@ -4925,6 +4942,7 @@
 				C250B0371DB7BB09004E9FBE /* mime-types.txt in Resources */,
 				D07450EA233D61B800769D7F /* write_words.tgs in Resources */,
 				9F03681722771A9700456348 /* anim_unpin.json in Resources */,
+				7F8A11792497701800A4F127 /* TGAboutWindow.storyboard in Resources */,
 				C253A9701D92F9F100CDC850 /* Localizable.strings in Resources */,
 				D07450E7233D61B800769D7F /* gift.tgs in Resources */,
 				9F03681B22771A9700456348 /* anim_pin.json in Resources */,
@@ -5098,6 +5116,7 @@
 				D070DB8122D3638F008A0BBE /* StickersViewController.swift in Sources */,
 				C2777B621DCFB4C9008B69DD /* ChatServiceItem.swift in Sources */,
 				9FFAE4F9205A8C89000C028E /* FFMpegAudioFrameDecoder.swift in Sources */,
+				7F8A117A2497701800A4F127 /* TGAboutWindow.swift in Sources */,
 				C232EABE1E1D13A800C4D38C /* TextUtils.swift in Sources */,
 				C253A9741D94182500CDC850 /* ChatRightView.swift in Sources */,
 				9FDA713F20EE2D49001ED8ED /* PopularPeersRowItem.swift in Sources */,
@@ -5287,6 +5306,7 @@
 				C20232AA1D81D19C007C9ADE /* ChatRowItem.swift in Sources */,
 				9FA0E53B2052EDFF001E5649 /* HackUtils.m in Sources */,
 				9FC4DA9E21DD1C6C003E2A62 /* ImageCompression.swift in Sources */,
+				7F8A117B2497701800A4F127 /* TGAboutViewController.swift in Sources */,
 				C2271DAC1DAE1116001792B6 /* PeerInfoEntries.swift in Sources */,
 				C25C132D1E8A404F00AE26A1 /* InstalledStickerPacksController.swift in Sources */,
 				9F10CE9A206284F8002DD61A /* InputDataDateRowItem.swift in Sources */,

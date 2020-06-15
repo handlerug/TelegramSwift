@@ -24,14 +24,14 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="TelegramMac" identifier="1Xt-HY-uBw" id="1Xt-HY-uBw" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                <menuItem title="Telegram" identifier="1Xt-HY-uBw" id="1Xt-HY-uBw" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="TelegramMac" systemMenu="apple" identifier="uQy-DD-JDr" id="uQy-DD-JDr" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
+                    <menu key="submenu" title="Telegram" systemMenu="apple" identifier="uQy-DD-JDr" id="uQy-DD-JDr" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
                         <items>
                             <menuItem title="About Telegram" identifier="5kV-Vb-QxS" id="5kV-Vb-QxS" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="ad5-ky-xne"/>
+                                    <action selector="aboutAction:" target="Voe-Tx-rLC" id="ZhI-1O-HA0"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="sE9-sf-sdU"/>
