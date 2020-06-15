@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4IT-0F-a13">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
@@ -67,7 +67,7 @@ All rights reserved.</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundRect" title="Copy to Clipboard" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jkx-4l-Bvo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu" size="11"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="copyButtonClicked:" target="iy1-iR-ByA" id="qOf-IX-dv2"/>
@@ -76,8 +76,8 @@ All rights reserved.</string>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wx-9O-ZxV">
                                 <rect key="frame" x="89" y="87" width="141" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="P7E-x4-hJQ">
-                                    <font key="font" metaFont="menu" size="11"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" id="P7E-x4-hJQ">
+                                    <font key="font" metaFont="message" size="11"/>
                                     <string key="title">Version 5.0.1 (123456)
 Mac App Store</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

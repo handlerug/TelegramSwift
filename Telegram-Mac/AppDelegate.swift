@@ -83,7 +83,8 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     private var activity:Any?
     private var executeUrlAfterLogin: String? = nil
 
-    private var preferencesController: NSWindowController?
+    private var preferencesController: TGPreferencesWindowController?
+    private var aboutController: NSWindowController?
 
     func applicationWillFinishLaunching(_ notification: Notification) {
        
@@ -977,20 +978,24 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
     }
     
     @IBAction func aboutAction(_ sender: Any) {
-        let aboutStoryboard = NSStoryboard.init(name: "TGAboutWindow", bundle: nil)
-        let aboutWindow = aboutStoryboard.instantiateController(withIdentifier: "TGAboutWindowController") as! NSWindowController
-        aboutWindow.showWindow(self)
+        if aboutController == nil {
+            let aboutStoryboard = NSStoryboard.init(name: "TGAboutWindow", bundle: nil)
+            aboutController = aboutStoryboard.instantiateInitialController() as? NSWindowController
+        }
+        
+        aboutController?.showWindow(sender)
         //showModal(with: AboutModalController(), for: window)
         //window.makeKeyAndOrderFront(sender)
     }
     
     @IBAction func preferencesAction(_ sender: Any) {
-        if !(preferencesController != nil) {
-            let storyboard = NSStoryboard(name: "TGPreferences", bundle: nil)
-            preferencesController = storyboard.instantiateInitialController() as? NSWindowController
-        }
-        
-        if (preferencesController != nil) {
+        if let context = self.contextValue?.context {
+            if preferencesController == nil {
+                let storyboard = NSStoryboard(name: "TGPreferences", bundle: nil)
+                preferencesController = storyboard.instantiateInitialController() as? TGPreferencesWindowController
+                preferencesController?.context = context
+            }
+            
             preferencesController?.showWindow(sender)
         }
 //        if let context = contextValue?.context {

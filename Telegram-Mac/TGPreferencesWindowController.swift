@@ -10,6 +10,8 @@ import Cocoa
 
 class TGPreferencesWindowController: NSWindowController, NSWindowDelegate {
     
+    public var context: AccountContext!
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
