@@ -36,12 +36,12 @@
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="uVO-Er-uCS"/>
                         <tabViewItem label="Accounts" image="NSUserAccounts" id="rAc-OZ-Wvr"/>
                         <tabViewItem label="Notifications" identifier="" image="Icon_SettingsNotifications" id="Gwf-4k-iNR"/>
-                        <tabViewItem label="Privacy and Security" image="Icon_SettingsSecurity" id="Ugq-0W-2Uu"/>
-                        <tabViewItem label="Data and Storage" image="Icon_SettingsStorage" id="dgY-0t-mbJ"/>
+                        <tabViewItem label="Privacy" image="Icon_SettingsSecurity" id="Ugq-0W-2Uu"/>
+                        <tabViewItem label="Storage" image="Icon_SettingsStorage" id="dgY-0t-mbJ"/>
                         <tabViewItem label="Appearance" image="Icon_AppearanceSettings" id="VG6-el-1SK"/>
-                        <tabViewItem label="Language" image="Icon_SettingsLanguage" id="v5t-sh-95O"/>
                         <tabViewItem label="Stickers" image="Icon_SettingsStickers" id="g5e-7b-RxP"/>
                     </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="4RE-ox-iWy">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -58,7 +58,6 @@
                         <segue destination="XNo-qc-QXn" kind="relationship" relationship="tabItems" id="9A2-Vs-p82"/>
                         <segue destination="Cje-rx-hUA" kind="relationship" relationship="tabItems" id="CvH-1Z-P8F"/>
                         <segue destination="0Ca-kV-eHu" kind="relationship" relationship="tabItems" id="liu-uQ-cUE"/>
-                        <segue destination="eiq-BM-zEq" kind="relationship" relationship="tabItems" id="AOI-mb-DkS"/>
                         <segue destination="yma-mT-Qfi" kind="relationship" relationship="tabItems" id="A1D-Gv-Eks"/>
                     </connections>
                 </tabViewController>
@@ -407,10 +406,10 @@
             </objects>
             <point key="canvasLocation" x="1364.5" y="616"/>
         </scene>
-        <!--Privacy and Security-->
+        <!--Privacy-->
         <scene sceneID="QK2-yq-Eqp">
             <objects>
-                <viewController title="Privacy and Security" id="XNo-qc-QXn" customClass="TGPreferencesViewController" customModule="Telegram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Privacy" id="XNo-qc-QXn" customClass="TGPreferencesViewController" customModule="Telegram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cKZ-Uo-BDs">
                         <rect key="frame" x="0.0" y="0.0" width="619" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -420,10 +419,10 @@
             </objects>
             <point key="canvasLocation" x="32" y="1126"/>
         </scene>
-        <!--Data and Storage-->
+        <!--Storage-->
         <scene sceneID="SfP-wQ-CZC">
             <objects>
-                <viewController title="Data and Storage" id="Cje-rx-hUA" customClass="TGPreferencesViewController" customModule="Telegram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Storage" id="Cje-rx-hUA" customClass="TGPreferencesViewController" customModule="Telegram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cgC-U1-v9G">
                         <rect key="frame" x="0.0" y="0.0" width="619" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -445,19 +444,6 @@
                 <customObject id="ePq-kE-2x6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1364.5" y="1126"/>
-        </scene>
-        <!--Language-->
-        <scene sceneID="I9m-ha-cW2">
-            <objects>
-                <viewController title="Language" id="eiq-BM-zEq" customClass="TGPreferencesViewController" customModule="Telegram" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="IFn-yl-OHR">
-                        <rect key="frame" x="0.0" y="0.0" width="619" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="aAE-Oq-dYp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="31.5" y="1487"/>
         </scene>
         <!--Stickers-->
         <scene sceneID="iuF-he-0lz">
@@ -551,7 +537,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esh-rS-6v9">
-                                <rect key="frame" x="40" y="19" width="20" height="21"/>
+                                <rect key="frame" x="39" y="19" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KZY-ob-A8T">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -559,7 +545,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ui-8p-bf4">
-                                <rect key="frame" x="59" y="19" width="20" height="21"/>
+                                <rect key="frame" x="58" y="19" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fyi-sz-htM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -593,16 +579,15 @@
                 </viewController>
                 <customObject id="rx1-ji-Anw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="682"/>
+            <point key="canvasLocation" x="700" y="681.5"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Icon_AppearanceSettings" width="24" height="24"/>
-        <image name="Icon_SettingsLanguage" width="24" height="24"/>
-        <image name="Icon_SettingsNotifications" width="24" height="24"/>
-        <image name="Icon_SettingsSecurity" width="24" height="24"/>
-        <image name="Icon_SettingsStickers" width="24" height="24"/>
-        <image name="Icon_SettingsStorage" width="24" height="24"/>
+        <image name="Icon_AppearanceSettings" width="32" height="32"/>
+        <image name="Icon_SettingsNotifications" width="32" height="32"/>
+        <image name="Icon_SettingsSecurity" width="32" height="32"/>
+        <image name="Icon_SettingsStickers" width="32" height="32"/>
+        <image name="Icon_SettingsStorage" width="32" height="32"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
