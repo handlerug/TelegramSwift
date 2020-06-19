@@ -491,20 +491,20 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="48" horizontalPageScroll="10" verticalLineScroll="48" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvw-NH-jq6">
-                                <rect key="frame" x="20" y="38" width="170" height="375"/>
+                                <rect key="frame" x="20" y="38" width="184" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="kOJ-Ke-2T7">
-                                    <rect key="frame" x="1" y="1" width="168" height="373"/>
+                                    <rect key="frame" x="1" y="1" width="182" height="373"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="46" rowSizeStyle="automatic" viewBased="YES" id="Pr8-4X-ovS">
-                                            <rect key="frame" x="0.0" y="0.0" width="168" height="373"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="373"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="165" minWidth="40" maxWidth="1000" id="cYJ-qb-fZs">
+                                                <tableColumn width="179" minWidth="40" maxWidth="1000" id="cYJ-qb-fZs">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -517,16 +517,16 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="AccountCellID" id="Zvk-za-JLx" customClass="AccountsTableCellView" customModule="Telegram" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="165" height="46"/>
+                                                            <rect key="frame" x="1" y="1" width="179" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SsC-uB-D7c">
-                                                                    <rect key="frame" x="3" y="3" width="40" height="40"/>
+                                                                    <rect key="frame" x="7" y="3" width="40" height="40"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="eVc-Na-2IB"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-yR-JSo" userLabel="Account Name">
-                                                                    <rect key="frame" x="49" y="23" width="115" height="17"/>
+                                                                    <rect key="frame" x="53" y="23" width="125" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" usesSingleLineMode="YES" id="7Ir-WH-435">
                                                                         <font key="font" metaFont="system"/>
@@ -535,7 +535,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Znh-kQ-wAb" userLabel="Phone Number">
-                                                                    <rect key="frame" x="49" y="4" width="120" height="17"/>
+                                                                    <rect key="frame" x="53" y="4" width="125" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="+1 (123) 456-7890" id="kDO-YA-RYb">
                                                                         <font key="font" metaFont="label" size="11"/>
@@ -591,14 +591,14 @@
                                 </buttonCell>
                             </button>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="fL2-hP-ZAy">
-                                <rect key="frame" x="198" y="20" width="464" height="393"/>
+                                <rect key="frame" x="212" y="20" width="450" height="393"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="JfV-k5-LAw">
-                                    <rect key="frame" x="1" y="1" width="462" height="391"/>
+                                    <rect key="frame" x="1" y="1" width="448" height="391"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6P0-Ef-Cmb">
-                                            <rect key="frame" x="0.0" y="0.0" width="447" height="376"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="433" height="376"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
