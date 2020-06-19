@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B18CE4E22640C520065CC91 /* TGGeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */; };
+		6BFDB5092263003C004DBA13 /* TGPreferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */; };
+		6BFDB50B22630337004DBA13 /* TGPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */; };
+		6BFDB50D226303B7004DBA13 /* TGPreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */; };
 		7F8A11792497701800A4F127 /* TGAboutWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */; };
 		7F8A117A2497701800A4F127 /* TGAboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11772497701700A4F127 /* TGAboutWindow.swift */; };
 		7F8A117B2497701800A4F127 /* TGAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11782497701700A4F127 /* TGAboutViewController.swift */; };
+		7FDD4D63249C99F10058B768 /* TGAccountsPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD4D62249C99F10058B768 /* TGAccountsPreferencesViewController.swift */; };
 		9F0367F0227208E000456348 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367EF227208E000456348 /* QRCode.swift */; };
 		9F0367F22272108800456348 /* ProxyQRCodeRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */; };
 		9F0367F72273260A00456348 /* UndoTooltipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367F62273260A00456348 /* UndoTooltipController.swift */; };
@@ -27,10 +32,6 @@
 		9F03681922771A9700456348 /* anim_archive.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680C22771A9600456348 /* anim_archive.json */; };
 		9F03681A22771A9700456348 /* anim_unmute.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680D22771A9700456348 /* anim_unmute.json */; };
 		9F03681B22771A9700456348 /* anim_pin.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F03680E22771A9700456348 /* anim_pin.json */; };
-		6B18CE4E22640C520065CC91 /* TGGeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */; };
-		6BFDB5092263003C004DBA13 /* TGPreferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */; };
-		6BFDB50B22630337004DBA13 /* TGPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */; };
-		6BFDB50D226303B7004DBA13 /* TGPreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */; };
 		9F0AE6872191D29D00A8B53A /* ContextSearchMessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AE6862191D29D00A8B53A /* ContextSearchMessageItem.swift */; };
 		9F0AE6B52199904400A8B53A /* sound_a.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9F0AE6B42199904400A8B53A /* sound_a.caf */; };
 		9F0AE6BC2199BBB900A8B53A /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AE6BB2199BBB900A8B53A /* MediaPlayerView.swift */; };
@@ -956,9 +957,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGGeneralPreferencesViewController.swift; sourceTree = "<group>"; };
+		6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TGPreferences.storyboard; sourceTree = "<group>"; };
+		6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGPreferencesViewController.swift; sourceTree = "<group>"; };
+		6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGPreferencesWindowController.swift; sourceTree = "<group>"; };
 		7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TGAboutWindow.storyboard; sourceTree = "<group>"; };
 		7F8A11772497701700A4F127 /* TGAboutWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutWindow.swift; sourceTree = "<group>"; };
 		7F8A11782497701700A4F127 /* TGAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutViewController.swift; sourceTree = "<group>"; };
+		7FDD4D62249C99F10058B768 /* TGAccountsPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGAccountsPreferencesViewController.swift; sourceTree = "<group>"; };
 		9F0367EF227208E000456348 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyQRCodeRowItem.swift; sourceTree = "<group>"; };
 		9F0367F62273260A00456348 /* UndoTooltipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoTooltipController.swift; sourceTree = "<group>"; };
@@ -976,10 +982,6 @@
 		9F03680C22771A9600456348 /* anim_archive.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_archive.json; sourceTree = "<group>"; };
 		9F03680D22771A9700456348 /* anim_unmute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_unmute.json; sourceTree = "<group>"; };
 		9F03680E22771A9700456348 /* anim_pin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_pin.json; sourceTree = "<group>"; };
-		6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGGeneralPreferencesViewController.swift; sourceTree = "<group>"; };
-		6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TGPreferences.storyboard; sourceTree = "<group>"; };
-		6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGPreferencesViewController.swift; sourceTree = "<group>"; };
-		6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGPreferencesWindowController.swift; sourceTree = "<group>"; };
 		9F0AE6862191D29D00A8B53A /* ContextSearchMessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSearchMessageItem.swift; sourceTree = "<group>"; };
 		9F0AE6B42199904400A8B53A /* sound_a.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound_a.caf; sourceTree = "<group>"; };
 		9F0AE6BB2199BBB900A8B53A /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
@@ -2080,7 +2082,6 @@
 				C2FD33F01E697EC2008D13D4 /* QuickLook.framework in Frameworks */,
 				9FC4DAA621DD1D6C003E2A62 /* libturbojpeg.a in Frameworks */,
 				C24DAB931E0828B6005EE404 /* JavaScriptCore.framework in Frameworks */,
-				9F21F65D20B5A9C900332C85 /* MapKit.framework in Frameworks */,
 				C250B0351DB78A0A004E9FBE /* Quartz.framework in Frameworks */,
 				C250B0331DB788B3004E9FBE /* Foundation.framework in Frameworks */,
 				C253A9671D92E3AF00CDC850 /* AVFoundation.framework in Frameworks */,
@@ -2093,6 +2094,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BFDB50722630016004DBA13 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */,
+				6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */,
+				6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */,
+				6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */,
+				7FDD4D62249C99F10058B768 /* TGAccountsPreferencesViewController.swift */,
+			);
+			name = preferences;
+			sourceTree = "<group>";
+		};
 		7F8A117524976FE800A4F127 /* about-window */ = {
 			isa = PBXGroup;
 			children = (
@@ -2122,17 +2135,6 @@
 				9F03680422771A9600456348 /* archiveAvatar.json */,
 			);
 			path = lottie;
-			sourceTree = "<group>";
-		};
-		6BFDB50722630016004DBA13 /* preferences */ = {
-			isa = PBXGroup;
-			children = (
-				6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */,
-				6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */,
-				6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */,
-				6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */,
-			);
-			name = preferences;
 			sourceTree = "<group>";
 		};
 		9F0AE6BA2199BBA400A8B53A /* media-player */ = {
@@ -4861,9 +4863,6 @@
 								enabled = 1;
 							};
 							com.apple.Maps.Mac = {
-								enabled = 1;
-							};
-							com.apple.Maps.Mac = {
 								enabled = 0;
 							};
 							com.apple.Sandbox = {
@@ -5132,6 +5131,7 @@
 				9FFAE4F7205A8C89000C028E /* FFMpegMediaFrameSourceContextHelpers.swift in Sources */,
 				A7393D352407CAE100CE44CA /* ChatMediaDice.swift in Sources */,
 				D0BEB9952166AF270055B718 /* PeerMediaTouchBar.swift in Sources */,
+				7FDD4D63249C99F10058B768 /* TGAccountsPreferencesViewController.swift in Sources */,
 				C25BB1691F867FEE0089ED02 /* ChatMessageAccessoryView.swift in Sources */,
 				C2DF47BB1DE79574003AA6C0 /* framing.c in Sources */,
 				C21BE3AF1FD099AA00C1C849 /* DeveloperViewController.swift in Sources */,
