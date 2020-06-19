@@ -110,6 +110,7 @@ final class UpdateTabController: ViewController {
         return _window
     }
     
+    private var accessoryViewController: NSTitlebarAccessoryViewController?
     private var _view: NSButton?
     private var viewInitialized = false
     private var controllerIndex = -1
@@ -195,20 +196,18 @@ final class UpdateTabController: ViewController {
         
         _view = button
         
-        let accessoryViewController = NSTitlebarAccessoryViewController()
-        accessoryViewController.layoutAttribute = .right
-        accessoryViewController.view = view
-        window.addTitlebarAccessoryViewController(accessoryViewController)
-        controllerIndex = window.titlebarAccessoryViewControllers.endIndex - 1
+        let controller = NSTitlebarAccessoryViewController()
+        controller.layoutAttribute = .right
+        controller.view = view
+        window.addTitlebarAccessoryViewController(controller)
+        self.accessoryViewController = controller
         
         viewInitialized = true
     }
     
     deinit {
         disposable.dispose()
-        if viewInitialized {
-            window.removeTitlebarAccessoryViewController(at: controllerIndex)
-        }
+        self.accessoryViewController?.removeFromParent()
     }
 }
 
