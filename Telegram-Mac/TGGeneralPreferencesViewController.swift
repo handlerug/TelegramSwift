@@ -26,6 +26,8 @@ class TGGeneralPreferencesViewController: TGPreferencesViewController {
     
     @IBOutlet weak var playInAppSoundsCheckbox: NSButton!
     
+    @IBOutlet weak var preserveFormattingWhenCopyingCheckbox: NSButton!
+    
     @IBOutlet weak var forceTouchRepliesRadio: NSButton!
     @IBOutlet weak var forceTouchEditsRadio: NSButton!
     @IBOutlet weak var forceTouchForwardsRadio: NSButton!
@@ -51,28 +53,30 @@ class TGGeneralPreferencesViewController: TGPreferencesViewController {
         let signal = combineLatest(queue: prepareQueue, baseSettingsSignal, appearanceSignal, appLaunchSettings(postbox: context.account.postbox), context.account.postbox.preferencesView(keys: [PreferencesKeys.secretChatSettings])) |> deliverOnMainQueue
         
         disposable.set(signal.start(next: { [weak self] settings, appearance, launchSettings, preferencesView in
-            if let strongSelf = self {
-                let baseSettings: BaseApplicationSettings = settings
-                //
-                //            let secretChatSettings = preferencesView.values[PreferencesKeys.secretChatSettings] as? SecretChatSettings ?? SecretChatSettings.defaultSettings
-                            
-                strongSelf.messageSendingReturnRadio.state = FastSettings.sendingType == .enter ? .on : .off
-                strongSelf.messageSendingCmdReturnRadio.state = FastSettings.sendingType == .cmdEnter ? .on : .off
-                
-                strongSelf.showSidebarCheckbox.state = FastSettings.sidebarEnabled ? .on : .off
-                strongSelf.showCallsTabCheckbox.state = baseSettings.showCallsTab ? .on : .off
-                
-                strongSelf.autoReplaceEmoticonsCheckbox.state = FastSettings.isPossibleReplaceEmojies ? .on : .off
-                strongSelf.suggestEmojiWhileTypingCheckbox.state = baseSettings.predictEmoji ? .on : .off
-                
-                strongSelf.playInAppSoundsCheckbox.state = FastSettings.inAppSounds ? .on : .off
-                
-                strongSelf.forceTouchRepliesRadio.state = FastSettings.forceTouchAction == .reply ? .on : .off
-                strongSelf.forceTouchEditsRadio.state = FastSettings.forceTouchAction == .edit ? .on : .off
-                strongSelf.forceTouchForwardsRadio.state = FastSettings.forceTouchAction == .forward ? .on : .off
-                
-                strongSelf.scrollInstantViewWithSpacebarCheckbox.state = FastSettings.instantViewScrollBySpace ? .on : .off
-            }
+            guard let self = self else { return }
+            
+            let baseSettings: BaseApplicationSettings = settings
+            
+//            let secretChatSettings = preferencesView.values[PreferencesKeys.secretChatSettings] as? SecretChatSettings ?? SecretChatSettings.defaultSettings
+                        
+            self.messageSendingReturnRadio.state = FastSettings.sendingType == .enter ? .on : .off
+            self.messageSendingCmdReturnRadio.state = FastSettings.sendingType == .cmdEnter ? .on : .off
+            
+            self.showSidebarCheckbox.state = FastSettings.sidebarEnabled ? .on : .off
+            self.showCallsTabCheckbox.state = baseSettings.showCallsTab ? .on : .off
+            
+            self.autoReplaceEmoticonsCheckbox.state = FastSettings.isPossibleReplaceEmojies ? .on : .off
+            self.suggestEmojiWhileTypingCheckbox.state = baseSettings.predictEmoji ? .on : .off
+            
+            self.playInAppSoundsCheckbox.state = FastSettings.inAppSounds ? .on : .off
+            
+            self.preserveFormattingWhenCopyingCheckbox.state = FastSettings.enableRTF ? .on : .off
+            
+            self.forceTouchRepliesRadio.state = FastSettings.forceTouchAction == .reply ? .on : .off
+            self.forceTouchEditsRadio.state = FastSettings.forceTouchAction == .edit ? .on : .off
+            self.forceTouchForwardsRadio.state = FastSettings.forceTouchAction == .forward ? .on : .off
+            
+            self.scrollInstantViewWithSpacebarCheckbox.state = FastSettings.instantViewScrollBySpace ? .on : .off
         }))
     }
     
@@ -80,56 +84,55 @@ class TGGeneralPreferencesViewController: TGPreferencesViewController {
         switch sender.tag {
         case 0:
             FastSettings.changeSendingType(.enter)
-            return
         case 1:
             FastSettings.changeSendingType(.cmdEnter)
-            return
         default:
             return
         }
     }
     
-    @IBAction func showSidebarChanged(_ sender: NSButton) {
+    @IBAction func showSidebarToggled(_ sender: NSButton) {
         FastSettings.toggleSidebar(sender.state == .on)
     }
     
-    @IBAction func showCallsTabChanged(_ sender: NSButton) {
-        _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, { settings -> BaseApplicationSettings in
-            return settings.withUpdatedShowCallsTab(sender.state == .on)
+    @IBAction func showCallsTabToggled(_ sender: NSButton) {
+        _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, {
+            $0.withUpdatedShowCallsTab(sender.state == .on)
         }).start()
     }
     
-    @IBAction func autoReplaceEmoticonsChanged(_ sender: NSButton) {
+    @IBAction func autoReplaceEmoticonsToggled(_ sender: NSButton) {
         FastSettings.toggleAutomaticReplaceEmojies(sender.state == .on)
     }
     
-    @IBAction func suggestEmojiWhileTypingChanged(_ sender: NSButton) {
-        _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, { settings -> BaseApplicationSettings in
-            return settings.withUpdatedPredictEmoji(sender.state == .on)
+    @IBAction func suggestEmojiWhileTypingToggled(_ sender: NSButton) {
+        _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, {
+            $0.withUpdatedPredictEmoji(sender.state == .on)
         }).start()
     }
     
-    @IBAction func playInAppSoundsChanged(_ sender: NSButton) {
+    @IBAction func playInAppSoundsToggled(_ sender: NSButton) {
         FastSettings.toggleInAppSouds(sender.state == .on)
+    }
+    
+    @IBAction func preserveFormattingWhenCopyingToggled(_ sender: NSButton) {
+        FastSettings.enableRTF = sender.state == .on
     }
     
     @IBAction func forceTouchMessageActionChanged(_ sender: NSButton) {
         switch sender.tag {
         case 0:
             FastSettings.toggleForceTouchAction(.reply)
-            return
         case 1:
             FastSettings.toggleForceTouchAction(.edit)
-            return
         case 2:
             FastSettings.toggleForceTouchAction(.forward)
-            return
         default:
             return
         }
     }
     
-    @IBAction func scrollInstantViewWithSpacebarChanged(_ sender: NSButton) {
+    @IBAction func scrollInstantViewWithSpacebarToggled(_ sender: NSButton) {
         FastSettings.toggleInstantViewScrollBySpace(sender.state == .on)
     }
     
