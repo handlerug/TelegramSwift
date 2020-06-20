@@ -14,6 +14,7 @@
 		7F8A11792497701800A4F127 /* TGAboutWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */; };
 		7F8A117A2497701800A4F127 /* TGAboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11772497701700A4F127 /* TGAboutWindow.swift */; };
 		7F8A117B2497701800A4F127 /* TGAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A11782497701700A4F127 /* TGAboutViewController.swift */; };
+		7FAA9AE9249DEE4300A878CD /* TGPreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA9AE8249DEE4300A878CD /* TGPreferencesTabViewController.swift */; };
 		7FDD4D63249C99F10058B768 /* TGAccountsPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDD4D62249C99F10058B768 /* TGAccountsPreferencesViewController.swift */; };
 		9F0367F0227208E000456348 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367EF227208E000456348 /* QRCode.swift */; };
 		9F0367F22272108800456348 /* ProxyQRCodeRowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */; };
@@ -964,6 +965,7 @@
 		7F8A11762497701700A4F127 /* TGAboutWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TGAboutWindow.storyboard; sourceTree = "<group>"; };
 		7F8A11772497701700A4F127 /* TGAboutWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutWindow.swift; sourceTree = "<group>"; };
 		7F8A11782497701700A4F127 /* TGAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGAboutViewController.swift; sourceTree = "<group>"; };
+		7FAA9AE8249DEE4300A878CD /* TGPreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGPreferencesTabViewController.swift; sourceTree = "<group>"; };
 		7FDD4D62249C99F10058B768 /* TGAccountsPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGAccountsPreferencesViewController.swift; sourceTree = "<group>"; };
 		9F0367EF227208E000456348 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		9F0367F12272108800456348 /* ProxyQRCodeRowItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyQRCodeRowItem.swift; sourceTree = "<group>"; };
@@ -2098,6 +2100,7 @@
 			isa = PBXGroup;
 			children = (
 				6BFDB5082263003C004DBA13 /* TGPreferences.storyboard */,
+				7FAA9AE8249DEE4300A878CD /* TGPreferencesTabViewController.swift */,
 				6BFDB50A22630337004DBA13 /* TGPreferencesViewController.swift */,
 				6B18CE4D22640C520065CC91 /* TGGeneralPreferencesViewController.swift */,
 				6BFDB50C226303B7004DBA13 /* TGPreferencesWindowController.swift */,
@@ -5153,6 +5156,7 @@
 				C22EE6191E66ECB200334C38 /* ReportReasonModalController.swift in Sources */,
 				C2B0722E1DFEDE430082939D /* UsernameInputRowItem.swift in Sources */,
 				C271EBE91EBA22FE0034792D /* TGCallConnectionDescription.m in Sources */,
+				7FAA9AE9249DEE4300A878CD /* TGPreferencesTabViewController.swift in Sources */,
 				C23B3AEB1E338ADC009C162C /* ContextMediaRowItem.swift in Sources */,
 				9F0368012277091800456348 /* LAnimationButton.swift in Sources */,
 				C26505931E0301A5001954DC /* MGalleryPhotoItem.swift in Sources */,
