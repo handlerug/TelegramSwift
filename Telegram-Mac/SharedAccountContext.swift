@@ -90,6 +90,7 @@ class SharedAccountContext {
     let layoutHandler:ValuePromise<SplitViewState> = ValuePromise(ignoreRepeated:true)
 
     private var statusItem: NSStatusItem?
+    private var accountsMenu: NSMenu?
 
     
     func updateStatusBarImage(_ image: NSImage?) -> Void {
@@ -167,15 +168,60 @@ class SharedAccountContext {
             }
         }
     }
+    
+    private func updateAccountsMenuBarMenu() {
+        guard let menu = self.accountsMenu, let activeAccountsInfoValue = activeAccountsInfoValue else {
+            return
+        }
+        menu.removeAllItems()
+        
+//        var activeAccountsInfoValue = activeAccountsInfoValue
+//        for (i, value) in activeAccountsInfoValue.accounts.enumerated() {
+//            if value.account.id == activeAccountsInfoValue.primary {
+//                activeAccountsInfoValue.accounts.swapAt(i, 0)
+//                break
+//            }
+//        }
+        for account in activeAccountsInfoValue.accounts {
+            let state: NSControl.StateValue?
+            if account.account.id == activeAccountsInfoValue.primary {
+                state = .on
+            } else {
+                state = nil
+            }
+            let image: NSImage?
+            if let cgImage = self.accountPhotos[account.account.peerId] {
+                image = NSImage(cgImage: cgImage, size: NSMakeSize(24, 24))
+            } else {
+                image = nil
+            }
+            
+            menu.addItem(ContextMenuItem(account.peer.displayTitle, handler: {
+                self.switchToAccount(id: account.account.id, action: nil)
+            }, image: image, state: state))
+        }
+        
+        if activeAccountsInfoValue.accounts.count < 3 {
+            menu.addItem(ContextSeparatorItem())
+
+            menu.addItem(ContextMenuItem(L10n.accountSettingsAddAccount, handler: {
+                let testingEnvironment = NSApp.currentEvent?.modifierFlags.contains(.command) == true
+                NSApp.activate(ignoringOtherApps: true)
+                mainWindow.makeKeyAndOrderFront(nil)
+                self.beginNewAuth(testingEnvironment: testingEnvironment)
+            }))
+        }
+    }
 
     private let layoutDisposable = MetaDisposable()
     private let displayUpgradeProgress: (Float?) -> Void
     
 
     
-    init(accountManager: AccountManager, networkArguments: NetworkInitializationArguments, rootPath: String, encryptionParameters: ValueBoxEncryptionParameters, displayUpgradeProgress: @escaping(Float?) -> Void) {
+    init(accountManager: AccountManager, networkArguments: NetworkInitializationArguments, rootPath: String, encryptionParameters: ValueBoxEncryptionParameters, displayUpgradeProgress: @escaping(Float?) -> Void, accountsMenu: NSMenu? = nil) {
         self.accountManager = accountManager
         self.displayUpgradeProgress = displayUpgradeProgress
+        self.accountsMenu = accountsMenu
         #if !SHARE
         self.accountManager.mediaBox.fetchCachedResourceRepresentation = { (resource, representation) -> Signal<CachedMediaResourceRepresentationResult, NoError> in
             return fetchCachedSharedResourceRepresentation(accountManager: accountManager, resource: resource, representation: representation)
@@ -456,7 +502,7 @@ class SharedAccountContext {
         
         let signal = self.activeAccountsWithInfoPromise.get() |> mapToSignal { (primary, accounts) -> Signal<(primary: AccountRecordId?, accounts: [AccountWithInfo], [PeerId : CGImage]), NoError> in
             let photos:[Signal<(PeerId, CGImage?), NoError>] = accounts.map { info in
-                return peerAvatarImage(account: info.account, photo: .peer(info.peer, info.peer.smallProfileImage, info.peer.displayLetters, nil), displayDimensions: NSMakeSize(32, 32)) |> map {
+                return peerAvatarImage(account: info.account, photo: .peer(info.peer, info.peer.smallProfileImage, info.peer.displayLetters, nil), displayDimensions: NSMakeSize(48, 48)) |> map {
                     (info.account.peerId, $0.0)
                 }
             }
@@ -481,6 +527,7 @@ class SharedAccountContext {
             self.activeAccountsInfoValue = (primary, accounts)
             self.accountPhotos = photos
             self.updateStatusBarMenuItem()
+            self.updateAccountsMenuBarMenu()
             
             #if !SHARE
             spotlights.removeAll()

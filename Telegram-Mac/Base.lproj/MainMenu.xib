@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Telegram" customModuleProvider="target">
             <connections>
+                <outlet property="accountsMenu" destination="tFr-qT-lkd" id="6xa-ey-0VL"/>
                 <outlet property="checkForUpdates" destination="xey-M7-XVy" id="7ii-1E-tIe"/>
                 <outlet property="preferences" destination="BOF-NM-1cW" id="iiN-GN-soF"/>
                 <outlet property="showQuickSwitcher" destination="sZh-ct-GQS" id="loY-ub-t4u"/>
@@ -264,6 +265,10 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Accounts" identifier="BNe-Pr-iCL" id="BNe-Pr-iCL" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Accounts" identifier="tFr-qT-lkd" id="tFr-qT-lkd" customClass="MMMenu" customModule="Telegram" customModuleProvider="target"/>
+                </menuItem>
                 <menuItem title="Window" identifier="aUF-d1-5bR" id="aUF-d1-5bR" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" identifier="Td7-aD-5lo" id="Td7-aD-5lo" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
@@ -302,7 +307,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
