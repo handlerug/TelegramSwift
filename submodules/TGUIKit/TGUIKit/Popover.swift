@@ -233,38 +233,7 @@ open class Popover: NSObject {
                             
                             
                         }
-                        
-                        let nHandler:(Control) -> Void = { [weak strongSelf] control in
-                            if let strongSelf = strongSelf {
-                                let s = Signal<Void,NoError>.single(Void()) |> delay(0.2, queue: Queue.mainQueue()) |> then(Signal<Void,NoError>.single(Void()) |> delay(0.2, queue: Queue.mainQueue()) |> restart)
-                                
-                                strongSelf.disposable.set(s.start(next: { [weak strongSelf] () in
-                                    if let strongSelf = strongSelf {
-                                        if !strongSelf.inside() && !control.mouseInside() {
-                                            if (NSEvent.pressedMouseButtons & (1 << 0)) == 0 {
-                                                strongSelf.hide()
-                                            }
-                                        }
-                                    }
-                                    
-                                }))
-                            }
-                            
-                            
-                        }
-                        
-                        var first: Bool = true
-                        
-                        control.kitWindow?.set(mouseHandler: { [weak strongSelf, weak control] _ -> KeyHandlerResult in
-                            if let strongSelf = strongSelf, first, let control = control, !strongSelf.static {
-                                if !strongSelf.inside() && !control.mouseInside() {
-                                    first = false
-                                    nHandler(control)
-                                }
-                            }
-                            return .invokeNext
-                        },  with: strongSelf, for: .mouseMoved, priority: .high)
-                        
+
                         control.kitWindow?.set(mouseHandler: { [weak strongSelf] event -> KeyHandlerResult in
                             if let strongSelf = strongSelf, !strongSelf.inside() && (!control.mouseInside() || control.continuesAction) {
                                 strongSelf.hide()
@@ -273,21 +242,6 @@ open class Popover: NSObject {
                                 return .rejected
                             }
                         }, with: strongSelf, for: .leftMouseDown, priority: .high)
-                        
-                        let hHandler:(Control) -> Void = { [weak strongSelf] _ in
-                            
-                            strongSelf?.disposable.set(nil)
-                            
-                        }
-                        
-                        strongSelf.background.set(handler: nHandler, for: .Normal)
-                        strongSelf.background.set(handler: hHandler, for: .Hover)
-                        
-                        
-                        control.set(handler: nHandler, for: .Normal)
-                        control.set(handler: hHandler, for: .Hover)
-                        
-                        
                     }
                 } else if let strongSelf = self {
                     controller?.viewWillDisappear(false)

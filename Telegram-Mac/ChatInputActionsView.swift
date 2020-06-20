@@ -96,8 +96,7 @@ class ChatInputActionsView: View, Notifable {
 
         entertaiments.highlightHovered = true
         addSubview(entertaiments)
-        
-        addHoverObserver()
+
         addClickObserver()
         entertaiments.canHighlight = false
         muteChannelMessages.hideAnimated = false
@@ -151,22 +150,6 @@ class ChatInputActionsView: View, Notifable {
         return chatInteraction.context.sharedContext.bindings.entertainment()
     }
     
-    private func addHoverObserver() {
-        
-        entertaiments.set(handler: { [weak self] (state) in
-            guard let `self` = self else {return}
-            let chatInteraction = self.chatInteraction
-            var enabled = false
-            
-            if let sidebarEnabled = chatInteraction.presentation.sidebarEnabled {
-                enabled = sidebarEnabled
-            }
-            if !((mainWindow.frame.width >= 1100 && chatInteraction.context.sharedContext.layout == .dual) || (mainWindow.frame.width >= 880 && chatInteraction.context.sharedContext.layout == .minimisize)) || !enabled {
-                self.showEntertainment()
-            }
-        }, for: .Hover)
-    }
-    
     private func showEntertainment() {
         let rect = NSMakeRect(0, 0, 350, max(mainWindow.frame.height - 400, 300))
         entertaimentsPopover._frameRect = rect
@@ -178,10 +161,15 @@ class ChatInputActionsView: View, Notifable {
         entertaiments.set(handler: { [weak self] (state) in
             if let strongSelf = self {
                 let chatInteraction = strongSelf.chatInteraction
-                if let sidebarEnabled = chatInteraction.presentation.sidebarEnabled, sidebarEnabled {
-                    if mainWindow.frame.width >= 1100 && chatInteraction.context.sharedContext.layout == .dual || mainWindow.frame.width >= 880 && chatInteraction.context.sharedContext.layout == .minimisize {
-                        
-                        chatInteraction.toggleSidebar()
+                if let sidebarEnabled = chatInteraction.presentation.sidebarEnabled {
+                    if sidebarEnabled {
+                        if mainWindow.frame.width >= 1100 && chatInteraction.context.sharedContext.layout == .dual || mainWindow.frame.width >= 880 && chatInteraction.context.sharedContext.layout == .minimisize {
+                            chatInteraction.toggleSidebar()
+                        } else {
+                            strongSelf.showEntertainment()
+                        }
+                    } else {
+                        strongSelf.showEntertainment()
                     }
                 }
             }
