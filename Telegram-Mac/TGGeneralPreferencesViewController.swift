@@ -96,8 +96,9 @@ class TGGeneralPreferencesViewController: TGPreferencesViewController {
     }
     
     @IBAction func showCallsTabToggled(_ sender: NSButton) {
+        let state = sender.state == .on
         _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, {
-            $0.withUpdatedShowCallsTab(sender.state == .on)
+            $0.withUpdatedShowCallsTab(state)
         }).start()
     }
     
@@ -106,8 +107,9 @@ class TGGeneralPreferencesViewController: TGPreferencesViewController {
     }
     
     @IBAction func suggestEmojiWhileTypingToggled(_ sender: NSButton) {
+        let state = sender.state == .on
         _ = updateBaseAppSettingsInteractively(accountManager: context.sharedContext.accountManager, {
-            $0.withUpdatedPredictEmoji(sender.state == .on)
+            $0.withUpdatedPredictEmoji(state)
         }).start()
     }
     
