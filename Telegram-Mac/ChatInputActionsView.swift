@@ -447,16 +447,18 @@ class ChatInputActionsView: View, Notifable {
                 if chatInteraction.presentation.state != .normal {
                     return
                 }
-                var items:[SPopoverItem] = []
+                
+                var items = [ContextMenuItem]()
                 
                 if peer.id != chatInteraction.context.account.peerId {
-                    items.append(SPopoverItem(L10n.chatSendWithoutSound, { [weak chatInteraction] in
+                    items.append(ContextMenuItem(L10n.chatSendWithoutSound, handler: { [weak chatInteraction] in
                         chatInteraction?.sendMessage(true, nil)
                     }))
                 }
+                
                 switch chatInteraction.mode {
                 case .history:
-                    items.append(SPopoverItem(peer.id == chatInteraction.context.peerId ? L10n.chatSendSetReminder : L10n.chatSendScheduledMessage, {
+                    items.append(ContextMenuItem(peer.id == chatInteraction.context.peerId ? L10n.chatSendSetReminder : L10n.chatSendScheduledMessage, handler: {
                         showModal(with: ScheduledMessageModalController(context: context, peerId: peer.id, scheduleAt: { [weak chatInteraction] date in
                             chatInteraction?.sendMessage(false, date)
                         }), for: context.window)
@@ -465,8 +467,8 @@ class ChatInputActionsView: View, Notifable {
                     break
                 }
                 
-                if !items.isEmpty {
-                    showPopover(for: control, with: SPopoverViewController(items: items))
+                if let event = NSApp.currentEvent, !items.isEmpty {
+                    ContextMenu.show(items: items, view: control, event: event)
                 }
             }
         }
