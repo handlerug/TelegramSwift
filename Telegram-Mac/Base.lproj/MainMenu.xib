@@ -35,25 +35,24 @@
                                     <action selector="aboutAction:" target="Voe-Tx-rLC" id="ZhI-1O-HA0"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="sE9-sf-sdU"/>
-                            <menuItem title="Preferences…" keyEquivalent="," identifier="BOF-NM-1cW" id="BOF-NM-1cW" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
-                                <connections>
-                                    <action selector="preferencesAction:" target="Voe-Tx-rLC" id="7BZ-fj-knq"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Check for Updates" tag="1000" identifier="1000" id="xey-M7-XVy" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="Ang-sr-P90"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                            <menuItem title="Quick Switcher" keyEquivalent="k" identifier="sZh-ct-GQS" id="sZh-ct-GQS" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                            <menuItem isSeparatorItem="YES" id="sE9-sf-sdU"/>
+                            <menuItem title="Preferences…" keyEquivalent="," identifier="BOF-NM-1cW" id="BOF-NM-1cW" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <connections>
-                                    <action selector="showQuickSwitcher:" target="Voe-Tx-rLC" id="OFA-D5-XK6"/>
+                                    <action selector="preferencesAction:" target="Voe-Tx-rLC" id="7BZ-fj-knq"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="qsg-Hw-5di"/>
+                            <menuItem title="Services" id="cJY-Fc-9g1">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Services" systemMenu="services" id="src-MG-htW"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                             <menuItem title="Hide" keyEquivalent="w" identifier="Olw-nP-bQN" id="Olw-nP-bQN" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                                 <connections>
                                     <action selector="closeWindow:" target="Voe-Tx-rLC" id="IKs-t5-kxH"/>
@@ -84,6 +83,37 @@
                             </menuItem>
                         </items>
                         <accessibility identifier="uQy-DD-JDr"/>
+                    </menu>
+                </menuItem>
+                <menuItem title="Chat" identifier="asi-sJ-wWF" id="asi-sJ-wWF" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Chat" identifier="tQp-Is-geS" id="tQp-Is-geS" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
+                        <items>
+                            <menuItem title="New Group" identifier="02b-8u-jC4" id="02b-8u-jC4" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="newGroupAction:" target="Voe-Tx-rLC" id="oIK-pA-XHy"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="New Channel" identifier="eXm-XO-luB" id="eXm-XO-luB" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="newChannelAction:" target="Voe-Tx-rLC" id="te0-2U-m37"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="New Secret Chat" identifier="vzZ-ec-CpT" id="vzZ-ec-CpT" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="newSecretChatAction:" target="Voe-Tx-rLC" id="uuL-Pm-gsL"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="qdo-j5-zgE"/>
+                            <menuItem title="Quick Switcher" keyEquivalent="k" identifier="sZh-ct-GQS" id="sZh-ct-GQS" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <connections>
+                                    <action selector="showQuickSwitcher:" target="Voe-Tx-rLC" id="OFA-D5-XK6"/>
+                                </connections>
+                            </menuItem>
+                        </items>
                     </menu>
                 </menuItem>
                 <menuItem title="Edit" identifier="5QF-Oa-p0T" id="5QF-Oa-p0T" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
@@ -295,6 +325,25 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="DRN-fu-gQh"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Help" identifier="Ru7-9M-Yv3" id="Ru7-9M-Yv3" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Help" systemMenu="help" identifier="b2k-Xh-NB3" id="b2k-Xh-NB3" customClass="MMMenu" customModule="Telegram" customModuleProvider="target">
+                        <items>
+                            <menuItem title="Telegram FAQ" identifier="gKN-YR-cEZ" id="gKN-YR-cEZ" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="telegramFAQAction:" target="Voe-Tx-rLC" id="bC3-v3-ccd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Ask a Question" identifier="GqB-2I-6ff" id="GqB-2I-6ff" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="askQuestionAction:" target="Voe-Tx-rLC" id="YCe-yo-I9U"/>
                                 </connections>
                             </menuItem>
                         </items>

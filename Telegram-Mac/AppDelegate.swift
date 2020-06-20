@@ -1003,6 +1003,55 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSUserNotificationCenterD
         NSApp.keyWindow?.close()
     }
     
+    @IBAction func newGroupAction(_ sender: Any) {
+        if let accountContext = self.contextValue?.context {
+            accountContext.composeCreateGroup()
+        }
+    }
+    
+    @IBAction func newChannelAction(_ sender: Any) {
+        if let accountContext = self.contextValue?.context {
+            accountContext.composeCreateChannel()
+        }
+    }
+    
+    @IBAction func newSecretChatAction(_ sender: Any) {
+        if let accountContext = self.contextValue?.context {
+            accountContext.composeCreateSecretChat()
+        }
+    }
+    
+    @IBAction func telegramFAQAction(_ sender: Any) {
+        if let accountContext = self.contextValue?.context {
+            openFaq(context: accountContext)
+        }
+    }
+    
+    @IBAction func askQuestionAction(_ sender: Any) {
+        confirm(for: self.window, information: L10n.accountConfirmAskQuestion, thridTitle: L10n.accountConfirmGoToFaq, successHandler: { result in
+            guard let accountContext = self.contextValue?.context else {
+                return
+            }
+            
+            switch result {
+            case .basic:
+                _ = showModalProgress(signal: supportPeerId(account: accountContext.account), for: self.window).start(next: { peerId in
+                    if let peerId = peerId {
+                        let controller = ChatController(context: accountContext, chatLocation: .peer(peerId))
+                        _ = self.sharedContextOnce.start(next: { appContext in
+                            let navigation = appContext.sharedContext.bindings.rootNavigation()
+                            let singleLayout = appContext.sharedContext.layout
+                            navigation.removeExceptMajor()
+                            navigation.push(controller, singleLayout == .single)
+                        })
+                    }
+                })
+            case .thrid:
+                openFaq(context: accountContext)
+            }
+        })
+    }
+    
     func application(_ application: NSApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void) -> Bool {
         if userActivity.activityType == CSSearchableItemActionType {
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
