@@ -623,6 +623,36 @@ public class ColorPalette : Equatable {
         return self._focusAnimationColor
     }
     
+    private let _toolbarBackgroundTop: NSColor
+    public var toolbarBackgroundTop: NSColor {
+        return self._toolbarBackgroundTop
+    }
+    private let _toolbarBackgroundBottom: NSColor
+    public var toolbarBackgroundBottom: NSColor {
+        return self._toolbarBackgroundBottom
+    }
+    private let _toolbarInactiveBackground: NSColor
+    public var toolbarInactiveBackground: NSColor {
+        return self._toolbarInactiveBackground
+    }
+    
+    private let _separatorColor: NSColor
+    public var separatorColor: NSColor {
+        return self._separatorColor
+    }
+    private let _separatorInactiveColor: NSColor
+    public var separatorInactiveColor: NSColor {
+        return self._separatorInactiveColor
+    }
+    
+    private let _toolbarIconColor: NSColor
+    public var toolbarIconColor: NSColor {
+        return self._toolbarIconColor
+    }
+//    private let _toolbarIconActiveColor: NSColor
+    public var toolbarIconActiveColor: NSColor {
+        return self.toolbarIconColor.darker(amount: 0.3)
+    }
     
     
     public var underSelectedColor: NSColor {
@@ -800,7 +830,13 @@ public class ColorPalette : Equatable {
                 listBackground: NSColor,
                 listGrayText: NSColor,
                 grayHighlight: NSColor,
-                focusAnimationColor: NSColor) {
+                focusAnimationColor: NSColor,
+                toolbarBackgroundTop: NSColor,
+                toolbarBackgroundBottom: NSColor,
+                toolbarInactiveBackground: NSColor,
+                separatorColor: NSColor,
+                separatorInactiveColor: NSColor,
+                toolbarIconColor: NSColor) {
         
         let background: NSColor = background.withAlphaComponent(1.0)
         let grayBackground: NSColor = grayBackground.withAlphaComponent(1.0)
@@ -1008,6 +1044,13 @@ public class ColorPalette : Equatable {
         self._listGrayText = listGrayText
         self._grayHighlight = grayHighlight
         self._focusAnimationColor = focusAnimationColor
+        
+        self._toolbarBackgroundTop = toolbarBackgroundTop
+        self._toolbarBackgroundBottom = toolbarBackgroundBottom
+        self._toolbarInactiveBackground = toolbarInactiveBackground
+        self._separatorColor = separatorColor
+        self._separatorInactiveColor = separatorInactiveColor
+        self._toolbarIconColor = toolbarIconColor
     }
     
     public func listProperties(reflect: Mirror? = nil) -> [String] {
@@ -1173,7 +1216,13 @@ public class ColorPalette : Equatable {
                             listBackground: listBackground,
                             listGrayText: listGrayText,
                             grayHighlight: grayHighlight,
-                            focusAnimationColor: focusAnimationColor)
+                            focusAnimationColor: focusAnimationColor,
+                            toolbarBackgroundTop: toolbarBackgroundTop,
+                            toolbarBackgroundBottom: toolbarBackgroundBottom,
+                            toolbarInactiveBackground: toolbarInactiveBackground,
+                            separatorColor: separatorColor,
+                            separatorInactiveColor: separatorInactiveColor,
+                            toolbarIconColor: toolbarIconColor)
     }
     
     public func withUpdatedWallpaper(_ wallpaper: PaletteWallpaper) -> ColorPalette {
@@ -1302,7 +1351,13 @@ public class ColorPalette : Equatable {
                             listBackground: listBackground,
                             listGrayText: listGrayText,
                             grayHighlight: grayHighlight,
-                            focusAnimationColor: focusAnimationColor)
+                            focusAnimationColor: focusAnimationColor,
+                            toolbarBackgroundTop: toolbarBackgroundTop,
+                            toolbarBackgroundBottom: toolbarBackgroundBottom,
+                            toolbarInactiveBackground: toolbarInactiveBackground,
+                            separatorColor: separatorColor,
+                            separatorInactiveColor: separatorInactiveColor,
+                            toolbarIconColor: toolbarIconColor)
     }
     
     public func withAccentColor(_ color: PaletteAccentColor, disableTint: Bool = false) -> ColorPalette {
@@ -1575,7 +1630,13 @@ public class ColorPalette : Equatable {
                             listBackground: listBackground,
                             listGrayText: listGrayText,
                             grayHighlight: grayHighlight,
-                            focusAnimationColor: focusAnimationColor)
+                            focusAnimationColor: focusAnimationColor,
+                            toolbarBackgroundTop: toolbarBackgroundTop,
+                            toolbarBackgroundBottom: toolbarBackgroundBottom,
+                            toolbarInactiveBackground: toolbarInactiveBackground,
+                            separatorColor: separatorColor,
+                            separatorInactiveColor: separatorInactiveColor,
+                            toolbarIconColor: toolbarIconColor)
     }
 }
 
@@ -1806,7 +1867,13 @@ public let whitePalette = ColorPalette(isNative: true, isDark: false,
                                         listBackground: NSColor(0xefeff3),
                                         listGrayText: NSColor(0x6D6D71),
                                         grayHighlight: NSColor(0xF8F8F8),
-                                        focusAnimationColor: NSColor(0x68A8E2)
+                                        focusAnimationColor: NSColor(0x68A8E2),
+                                        toolbarBackgroundTop: NSColor(0xF4F4F4),
+                                        toolbarBackgroundBottom: NSColor(0xCBCBCB),
+                                        toolbarInactiveBackground: NSColor(0xF6F6F6),
+                                        separatorColor: NSColor(0xA0A0A0),
+                                        separatorInactiveColor: NSColor(0xD1D1D1),
+                                        toolbarIconColor: NSColor(0x565656)
 )
 
 
@@ -1953,7 +2020,13 @@ public let nightAccentPalette = ColorPalette(isNative: true, isDark: true,
                                            listBackground: NSColor(0x131415),
                                            listGrayText: NSColor(0xb1c3d5),
                                            grayHighlight: NSColor(0x18222d).darker(amount: 0.08),
-                                           focusAnimationColor: NSColor(0x68A8E2)
+                                           focusAnimationColor: NSColor(0x68A8E2),
+                                           toolbarBackgroundTop: NSColor(0xF4F4F4),
+                                           toolbarBackgroundBottom: NSColor(0xCBCBCB),
+                                           toolbarInactiveBackground: NSColor(0xF6F6F6),
+                                           separatorColor: NSColor(0xA0A0A0),
+                                           separatorInactiveColor: NSColor(0xD1D1D1),
+                                           toolbarIconColor: NSColor(0x565656)
 )
 public let dayClassicPalette = ColorPalette(isNative: true,
                                             isDark: false,
@@ -2087,7 +2160,13 @@ public let dayClassicPalette = ColorPalette(isNative: true,
                                             listBackground: NSColor(0xefeff3),
                                             listGrayText: NSColor(0x6D6D71),
                                             grayHighlight: NSColor(0xF8F8F8),
-                                            focusAnimationColor: NSColor(0x68A8E2)
+                                            focusAnimationColor: NSColor(0x68A8E2),
+                                            toolbarBackgroundTop: NSColor(0xF4F4F4),
+                                            toolbarBackgroundBottom: NSColor(0xCBCBCB),
+                                            toolbarInactiveBackground: NSColor(0xF6F6F6),
+                                            separatorColor: NSColor(0xA0A0A0),
+                                            separatorInactiveColor: NSColor(0xD1D1D1),
+                                            toolbarIconColor: NSColor(0x565656)
 )
 
 public let darkPalette = ColorPalette(isNative: true, isDark:true,
@@ -2222,7 +2301,13 @@ public let darkPalette = ColorPalette(isNative: true, isDark:true,
                                       listBackground: NSColor(0x131415),
                                       listGrayText: NSColor(0x8699a3),
                                       grayHighlight: NSColor(0x292b36).darker(amount: 0.08),
-                                      focusAnimationColor: NSColor(0x68A8E2)
+                                      focusAnimationColor: NSColor(0x68A8E2),
+                                      toolbarBackgroundTop: NSColor(0xF4F4F4),
+                                      toolbarBackgroundBottom: NSColor(0xCBCBCB),
+                                      toolbarInactiveBackground: NSColor(0xF6F6F6),
+                                      separatorColor: NSColor(0xA0A0A0),
+                                      separatorInactiveColor: NSColor(0xD1D1D1),
+                                      toolbarIconColor: NSColor(0x565656)
 )
 
 @available(macOS 10.14, *)
@@ -2252,7 +2337,7 @@ private final class MojavePalette : ColorPalette {
     private var controlBackgroundColor: NSColor {
         return NSColor(0x1E1E1E)
     }
-    private var separatorColor: NSColor {
+    private var separatorColor2: NSColor {
         return NSColor(0x3d3d3d)
     }
     private var textColor: NSColor {
@@ -2308,7 +2393,7 @@ private final class MojavePalette : ColorPalette {
         return controlBackgroundColor
     }
     override var border: NSColor {
-       return separatorColor
+       return separatorColor2
     }
     override var accentSelect: NSColor {
         return controlAccentColor.darker(amount: 0.2)
@@ -2523,7 +2608,13 @@ public let systemPalette: ColorPalette = {
                             listBackground: NSColor(0x131415),
                             listGrayText: NSColor(0xb1c3d5),
                             grayHighlight: NSColor(0x292a2f).darker(amount: 0.08),
-                            focusAnimationColor: NSColor(0x68A8E2)
+                            focusAnimationColor: NSColor(0x68A8E2),
+                            toolbarBackgroundTop: NSColor(0xF4F4F4),
+                            toolbarBackgroundBottom: NSColor(0xCBCBCB),
+                            toolbarInactiveBackground: NSColor(0xF6F6F6),
+                            separatorColor: NSColor(0xA0A0A0),
+                            separatorInactiveColor: NSColor(0xD1D1D1),
+                            toolbarIconColor: NSColor(0x565656)
     )
     
    

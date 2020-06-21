@@ -340,7 +340,13 @@ extension ColorPalette  {
                                     listBackground: parseColor(decoder, "listBackground") ?? palette.listBackground,
                                     listGrayText: parseColor(decoder, "listGrayText") ?? palette.listGrayText,
                                     grayHighlight: parseColor(decoder, "grayHighlight") ?? palette.grayHighlight,
-                                    focusAnimationColor: parseColor(decoder, "focusAnimationColor") ?? palette.focusAnimationColor
+                                    focusAnimationColor: parseColor(decoder, "focusAnimationColor") ?? palette.focusAnimationColor,
+                                    toolbarBackgroundTop: parseColor(decoder, "toolbarBackgroundTop") ?? palette.toolbarBackgroundTop,
+                                    toolbarBackgroundBottom: parseColor(decoder, "toolbarBackgroundBottom") ?? palette.toolbarBackgroundBottom,
+                                    toolbarInactiveBackground: parseColor(decoder, "toolbarInactiveBackground") ?? palette.toolbarInactiveBackground,
+                                    separatorColor: parseColor(decoder, "separatorColor") ?? palette.separatorColor,
+                                    separatorInactiveColor: parseColor(decoder, "separatorInactiveColor") ?? palette.separatorInactiveColor,
+                                    toolbarIconColor: parseColor(decoder, "toolbarIconColor") ?? palette.toolbarIconColor
         )
     }
 }

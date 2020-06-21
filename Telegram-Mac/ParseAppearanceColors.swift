@@ -535,7 +535,13 @@ func importPalette(_ path: String) -> ColorPalette? {
                                 listBackground: colors["listBackground"] ?? parent.palette.listBackground,
                                 listGrayText: colors["listGrayText"] ?? parent.palette.listGrayText,
                                 grayHighlight: colors["grayHighlight"] ?? parent.palette.grayHighlight,
-                                focusAnimationColor: colors["focusAnimationColor"] ?? parent.palette.focusAnimationColor)
+                                focusAnimationColor: colors["focusAnimationColor"] ?? parent.palette.focusAnimationColor,
+                                toolbarBackgroundTop: colors["toolbarBackgroundTop"] ?? parent.palette.toolbarBackgroundTop,
+                                toolbarBackgroundBottom: colors["toolbarBackgroundBottom"] ?? parent.palette.toolbarBackgroundBottom,
+                                toolbarInactiveBackground: colors["toolbarInactiveBackground"] ?? parent.palette.toolbarInactiveBackground,
+                                separatorColor: colors["separatorColor"] ?? parent.palette.separatorColor,
+                                separatorInactiveColor: colors["separatorInactiveColor"] ?? parent.palette.separatorInactiveColor,
+                                toolbarIconColor: colors["toolbarIconColor"] ?? parent.palette.toolbarIconColor)
         }
         
     }

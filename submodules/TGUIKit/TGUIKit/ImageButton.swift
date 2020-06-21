@@ -47,7 +47,8 @@ open class ImageButton: Button {
     
     override func prepare() {
         super.prepare()
-        imageView.animates = true
+//        imageView.animates = true
+        imageView.animates = false
         //imageView.isEventLess = true
         self.addSubview(imageView)
     }

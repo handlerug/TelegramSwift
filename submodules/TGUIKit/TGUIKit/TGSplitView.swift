@@ -139,7 +139,7 @@ fileprivate class SplitMinimisizeView : Control {
         super.draw(layer, in: ctx)
         if let splitView = splitView {
             if let drawBorder = splitView.delegate?.splitViewDrawBorder(), drawBorder {
-                ctx.setFillColor(presentation.colors.border.cgColor)
+                ctx.setFillColor(presentation.colors.separatorColor.cgColor)
                 ctx.fill(NSMakeRect(floorToScreenPixels(backingScaleFactor, frame.width / 2), 0, .borderSize, frame.height))
             }
         }
