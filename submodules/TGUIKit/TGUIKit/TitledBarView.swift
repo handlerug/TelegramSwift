@@ -75,7 +75,7 @@ private class TitledContainerView : View {
                 tY = (frame.height - t) / 2.0
                 
                 let sY = tY + textLayout.size.height + 2.0
-                NSLog("frame.height: %f, t: %f, tY: %f, sY: %f", frame.height, t, tY, sY)
+                //NSLog("frame.height: %f, t: %f, tY: %f, sY: %f", frame.height, t, tY, sY)
                 if !hiddenStatus {
                     let point = convert( NSMakePoint(floorToScreenPixels(backingScaleFactor, (superview.frame.width - statusLayout.size.width)/2.0), tY), from: superview)
                     
@@ -86,7 +86,7 @@ private class TitledContainerView : View {
             let point = NSMakePoint(floorToScreenPixels(backingScaleFactor, (frame.width - textLayout.size.width)/2.0), tY)
             var textRect = NSMakeRect(min(max(textInset == nil ? point.x : textInset!, 0), frame.width - textLayout.size.width), point.y, textLayout.size.width, textLayout.size.height)
             
-            NSLog("point: %@; textRect: %@", NSStringFromPoint(point), NSStringFromRect(textRect))
+            //NSLog("point: %@; textRect: %@", NSStringFromPoint(point), NSStringFromRect(textRect))
             
             if let (titleImage, side) = titleImage {
                 switch side {
