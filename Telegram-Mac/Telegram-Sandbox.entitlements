@@ -2,14 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.apple.developer.maps</key>
-	<true/>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>me.handlerug.Telegram</string>
-		<string>me.handlerug.Telegram.TelegramShare</string>
+		<string>$(TeamIdentifierPrefix)me.handlerug.Telegram.TelegramShare</string>
+		<string>$(TeamIdentifierPrefix)me.handlerug.Telegram</string>
 	</array>
 	<key>com.apple.security.device.audio-input</key>
 	<true/>
@@ -29,8 +27,8 @@
 	<true/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)me.handlerug.Telegram</string>
-		<string>$(AppIdentifierPrefix)me.handlerug.Telegram.TelegramShare</string>
+		<string>$(AppIdentifierPrefix)6U66H297KV.me.handlerug.Telegram</string>
+		<string>$(AppIdentifierPrefix)6U66H297KV.me.handlerug.Telegram.TelegramShare</string>
 	</array>
 </dict>
 </plist>
