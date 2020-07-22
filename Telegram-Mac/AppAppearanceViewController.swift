@@ -167,6 +167,7 @@ private func appAppearanceEntries(appearance: Appearance, settings: ThemePalette
         var locals: [LocalPaletteWithReference] = [LocalPaletteWithReference(palette: dayClassicPalette, cloud: dayClassicCloud),
                                                    LocalPaletteWithReference(palette: whitePalette, cloud: dayCloud),
                                                    LocalPaletteWithReference(palette: nightAccentPalette, cloud: nightAccentCloud),
+                                                   LocalPaletteWithReference(palette: darkPalette, cloud: nil),
                                                    LocalPaletteWithReference(palette: systemPalette, cloud: nil)]
         
         for (i, local) in locals.enumerated() {
