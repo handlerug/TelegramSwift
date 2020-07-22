@@ -41,7 +41,8 @@ struct SpotlightIdentifier : Hashable {
 
 private func makeSearchItem(for peer: Peer, index: Int, accountPeer: Peer, accountId: AccountRecordId) -> SpotlightItem {
     let key = SpotlightIdentifier(recordId: accountId, source: .peerId(peer.id))
-    let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeData as String)
+    let attributeSet = CSSearchableItemAttributeSet()
+    attributeSet.contentType = kUTTypeData as String
     attributeSet.title = peer.displayTitle + " → \(accountPeer.addressName ?? accountPeer.displayTitle)"
     attributeSet.contentDescription = "Popular contact in telegram"
     attributeSet.thumbnailData = theme.icons.appUpdate.data
