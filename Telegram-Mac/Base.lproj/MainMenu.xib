@@ -295,6 +295,27 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Go" id="jyU-PE-xuZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Go" id="X83-zx-0PL">
+                        <items>
+                            <menuItem title="Next Chat" id="HdN-g0-fTL">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+CQ
+</string>
+                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                            </menuItem>
+                            <menuItem title="Previous Chat" id="TB7-DI-S7d">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+GQ
+</string>
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="V1r-Sp-OnB"/>
+                            <menuItem title="Saved Messages" keyEquivalent="0" id="WxX-rs-FJs"/>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Accounts" identifier="BNe-Pr-iCL" id="BNe-Pr-iCL" customClass="MMMenuItem" customModule="Telegram" customModuleProvider="target">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Accounts" identifier="tFr-qT-lkd" id="tFr-qT-lkd" customClass="MMMenu" customModule="Telegram" customModuleProvider="target"/>
